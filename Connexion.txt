@@ -1,0 +1,10 @@
+{
+	"explorateur" : { ... },
+	"token" : ""
+}
+{
+	"username" : "",
+	"password" : ""
+}
+
+

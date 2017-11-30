@@ -1,0 +1,12 @@
+[
+	{
+	"dateExploration" : "2017-12-31 24:60:60",
+	"depart" : "fsdfdfsd",
+	"destination" : "N'Jast",
+	"runes" : { ... },
+	"unit" : { ... },
+	"href" : ""
+	},
+	...
+]
+

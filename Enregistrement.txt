@@ -1,0 +1,6 @@
+{
+	"courriel" : "",
+	"pseudonyme" : "",
+	"motDePasse" : ""
+}
+

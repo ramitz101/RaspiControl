@@ -1,0 +1,14 @@
+{
+	"name" : "",
+	"life" : "",
+	"speed" : "",
+	"imageURL" : "",
+	"affinity" : "",
+	"runes" : { ... }
+	"set" : "",
+	"number" : 15613,
+	"uuidUnit" : "",
+	"kernel" : {},
+	"href" : ""
+}
+
