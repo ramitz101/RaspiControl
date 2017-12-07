@@ -13,11 +13,5 @@
         android:title="@string/action_connexion_title"
         app:showAsAction="always"
             />
-    <item
-        android:id="@+id/action_openRight"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        android:icon="@drawable/ic_open_right"
-        app:showAsAction="always" />
 
 </menu>

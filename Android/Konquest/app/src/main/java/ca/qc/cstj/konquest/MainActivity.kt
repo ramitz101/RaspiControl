@@ -28,24 +28,14 @@ class MainActivity : AppCompatActivity() {
 
         nav_left_view.setNavigationItemSelectedListener{ item ->
             when (item.itemId) {
-                R.id.nav_camera -> {
-                    Toast.makeText(this,"Camera",Toast.LENGTH_LONG).show()
-                }
-                R.id.nav_gallery -> {
+                //R.id.nav_camera -> {
+                  //  Toast.makeText(this,"Camera",Toast.LENGTH_LONG).show()
+                //}
 
-                }
-                R.id.nav_slideshow -> {
-
-                }
-                R.id.nav_manage -> {
-
-                }
                 R.id.nav_share -> {
 
                 }
-                R.id.nav_send -> {
 
-                }
             }
 
             drawer_layout.closeDrawer(GravityCompat.START)
@@ -116,10 +106,6 @@ class MainActivity : AppCompatActivity() {
 
             R.id.action_connexion_deconnexion -> {
                 
-            }
-            R.id.action_openRight -> {
-                drawer_layout.openDrawer(GravityCompat.END)
-                return true
             }
 
             else -> return super.onOptionsItemSelected(item)
