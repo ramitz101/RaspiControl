@@ -53,6 +53,28 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+        nav_right_view.setNavigationItemSelectedListener{ item ->
+            when (item.itemId) {
+                R.id.nav_settings -> {
+
+                }
+                R.id.nav_logout -> {
+
+                }
+                R.id.nav_help -> {
+
+                }
+                R.id.nav_about -> {
+
+                }
+
+            }
+
+            drawer_layout.closeDrawer(GravityCompat.START)
+            true
+
+        }
+
 
         nav_right_view.setNavigationItemSelectedListener{ item ->
             when (item.itemId) {
@@ -71,9 +93,12 @@ class MainActivity : AppCompatActivity() {
     override fun onBackPressed() {
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
             drawer_layout.closeDrawer(GravityCompat.START)
-        } else {
+        } else if(drawer_layout.isDrawerOpen(GravityCompat.END)) {
+            drawer_layout.closeDrawer(GravityCompat.END)
+        }else{
             super.onBackPressed()
         }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -92,6 +117,10 @@ class MainActivity : AppCompatActivity() {
             R.id.action_connexion_deconnexion -> {
                 
             }
+            R.id.action_openRight -> {
+                drawer_layout.openDrawer(GravityCompat.END)
+                return true
+            }
 
             else -> return super.onOptionsItemSelected(item)
 
@@ -102,18 +131,6 @@ class MainActivity : AppCompatActivity() {
 
     fun updateMenuConnexionTitle(item: MenuItem) {
 
-    }
-
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        // Handle navigation view item clicks here.
-        when (item.itemId) {
-            R.id.nav_share -> {
-
-            }
-        }
-
-        drawer_layout.closeDrawer(GravityCompat.START)
-        return true
     }
 
 
