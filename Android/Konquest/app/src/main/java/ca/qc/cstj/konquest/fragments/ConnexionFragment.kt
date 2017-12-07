@@ -22,6 +22,7 @@ class ConnexionFragment : Fragment() {
 
 
 
+
         // On Inflate la vu de connexion.
         return inflater.inflate(R.layout.fragment_connexion, container, false)
     }
