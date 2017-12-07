@@ -7,18 +7,4 @@
         android:title="@string/action_settings"
         app:showAsAction="never" />
 
-    <Variable
-        android:id="@+id/display_connexion"
-        android:name="displayConnexion"
-        android:type="Boolean"
-        />
-
-    <item
-        android:id="@+id/action_connexion"
-        android:orderInCategory="99"
-        android:title="@{displayConnexion ? @string/action_connexion_title : @string/action_deconnexion_title}"
-        app:showAsAction="always"
-        android:onClick="AllerFragmentConnexionOuDeconnexion"
-            />
-
 </menu>

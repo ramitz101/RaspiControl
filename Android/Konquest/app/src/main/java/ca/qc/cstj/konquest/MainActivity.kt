@@ -8,10 +8,11 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +29,46 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
 
-        nav_view.setNavigationItemSelectedListener(this)
+        nav_left_view.setNavigationItemSelectedListener{ item ->
+            when (item.itemId) {
+                R.id.nav_camera -> {
+                    Toast.makeText(this,"Camera",Toast.LENGTH_LONG).show()
+                }
+                R.id.nav_gallery -> {
+
+                }
+                R.id.nav_slideshow -> {
+
+                }
+                R.id.nav_manage -> {
+
+                }
+                R.id.nav_share -> {
+
+                }
+                R.id.nav_send -> {
+
+                }
+            }
+
+            drawer_layout.closeDrawer(GravityCompat.START)
+            true
+
+        }
+
+
+        nav_right_view.setNavigationItemSelectedListener{ item ->
+            when (item.itemId) {
+                R.id.nav_help -> {
+                    Toast.makeText(this,"Help",Toast.LENGTH_LONG).show()
+                }
+            }
+
+            drawer_layout.closeDrawer(GravityCompat.START)
+            true
+
+        }
+
     }
 
     override fun onBackPressed() {
@@ -55,30 +95,4 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        // Handle navigation view item clicks here.
-        when (item.itemId) {
-            R.id.nav_camera -> {
-                // Handle the camera action
-            }
-            R.id.nav_gallery -> {
-
-            }
-            R.id.nav_slideshow -> {
-
-            }
-            R.id.nav_manage -> {
-
-            }
-            R.id.nav_share -> {
-
-            }
-            R.id.nav_send -> {
-
-            }
-        }
-
-        drawer_layout.closeDrawer(GravityCompat.START)
-        return true
-    }
 }
