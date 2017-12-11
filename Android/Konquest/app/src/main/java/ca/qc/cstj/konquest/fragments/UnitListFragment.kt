@@ -12,25 +12,17 @@ import android.view.ViewGroup
 
 import ca.qc.cstj.konquest.R
 import ca.qc.cstj.konquest.adapters.UnitRecyclerViewAdapter
+import ca.qc.cstj.konquest.helpers.UNITS_URL
 import com.github.kittinunf.fuel.android.core.Json
 import com.github.kittinunf.fuel.android.extension.responseJson
 import com.github.kittinunf.fuel.httpGet
 
-/**
- * A fragment representing a list of Items.
- *
- *
- * Activities containing this fragment MUST implement the [OnListFragmentInteractionListener]
- * interface.
- */
-/**
- * Mandatory empty constructor for the fragment manager to instantiate the
- * fragment (e.g. upon screen orientation changes).
- */
 class UnitListFragment : Fragment() {
-    // TODO: Customize parameters
+    // Les paramètres personnalisé.
     private var mColumnCount = 1
     private var mListener: OnListFragmentInteractionListener? = null
+    private var units = mutableListOf<Unit>()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,21 +44,35 @@ class UnitListFragment : Fragment() {
             } else {
                 view.layoutManager = GridLayoutManager(context, mColumnCount)
             }
-            UNIT_URL.httpGet().responseJson { request, response, result ->
-                view.adapter = UnitRecyclerViewAdapter(creatUnitList(result.get()), mListener)
+
+            // Aller dans le recycler view des untis.
+            view.adapter = UnitRecyclerViewAdapter(units, mListener)
+
+            UNITS_URL.httpGet().responseJson { request, response, result ->
+                when(response.statusCode) {
+                    200 -> {
+                        createUnitList(result.get())
+                        view.adapter.notifyDataSetChanged()
+                    }
+                }
+
             }
         }
         return view
     }
 
-    fun creatUnitList(json: Json) : List<Unit> {
-        var units = mutableListOf<Unit>()
+    // la fonction qui créer la liste de units et qui insert les données à l'intérieur.
+    fun createUnitList(json: Json) {
+        // On crée un tableau.
         val tabJson = json.array()
-
+        // On nettoie les anciennes données.
+        units.clear()
+        // On insert les nouvelles données de units.
         for( i in 0.. (json.array().length() -1 )) {
-            units.add(Unit(Json(tabJson[i].toString())))
+            // TODO : IL existe un packet dans Kotlin qui s'appel Unit et ici il y fait référence au lieu de notre model...
+            // TODO : Merci de trouver une solution.
+            //units.add(Unit(Json(tabJson[i].toString())))
         }
-        return units
     }
 
 
@@ -84,15 +90,6 @@ class UnitListFragment : Fragment() {
         mListener = null
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     *
-     *
-     * See the Android Training lesson [Communicating with Other Fragments](http://developer.android.com/training/basics/fragments/communicating.html) for more information.
-     */
     interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
         fun onListFragmentInteraction(unit: Unit?)

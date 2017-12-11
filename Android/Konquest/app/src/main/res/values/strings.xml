@@ -4,10 +4,13 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <!-- Menu  -->
+
     <string name="action_settings">Settings</string>
-    <string name="action_connexion_title">Connexion</string>
-    <string name="action_deconnexion_title">Déconnexion</string>
+    <string name="action_connexion">Connexion</string>
+    <string name="action_deconnexion">Déconnexion</string>
+    <string name="action_courriel">Courriel :</string>
+    <string name="action_motDePasse">Mot de passe :</string>
+    <string name="action_lienEnregistrement">Aller sur la page d'enregistrement</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

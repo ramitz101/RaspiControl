@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ca.qc.cstj.konquest.Activity.ConnexionActivity">
+
+    <EditText
+        android:id="@+id/editTextCourriel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        tools:layout_editor_absoluteX="85dp"
+        tools:layout_editor_absoluteY="132dp" />
+
+    <EditText
+        android:id="@+id/editTextMotDePasse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPassword"
+        tools:layout_editor_absoluteX="85dp"
+        tools:layout_editor_absoluteY="232dp" />
+
+    <TextView
+        android:id="@+id/textViewCourriel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/action_courriel"
+        android:textSize="20dp"
+        tools:layout_editor_absoluteX="152dp"
+        tools:layout_editor_absoluteY="105dp" />
+
+    <TextView
+        android:id="@+id/textViewMotDePasse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/action_motDePasse"
+        android:textSize="20dp"
+        tools:layout_editor_absoluteX="126dp"
+        tools:layout_editor_absoluteY="205dp" />
+
+    <Button
+        android:id="@+id/buttonConnexion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/action_connexion"
+        android:onClick="buttonConnexion"
+        tools:layout_editor_absoluteX="147dp"
+        tools:layout_editor_absoluteY="300dp" />
+
+    <Button
+        android:id="@+id/buttonLienEnregistrement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/action_lienEnregistrement"
+        android:onClick="buttonLienEnregistrement"
+        tools:layout_editor_absoluteX="47dp"
+        tools:layout_editor_absoluteY="377dp" />
+
+</android.support.constraint.ConstraintLayout>

@@ -10,7 +10,7 @@
     <item
         android:id="@+id/action_connexion_deconnexion"
         android:orderInCategory="99"
-        android:title="@string/action_connexion_title"
+        android:title="@string/action_connexion"
         app:showAsAction="always"
             />
 
