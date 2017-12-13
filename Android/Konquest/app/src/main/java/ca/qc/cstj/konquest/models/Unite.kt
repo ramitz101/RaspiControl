@@ -2,7 +2,7 @@ package ca.qc.cstj.konquest.models
 
 import com.github.kittinunf.fuel.android.core.Json
 
-class Unit(jsonObject: Json) {
+class Unite(jsonObject: Json) {
     var name : String = jsonObject.obj().getString("name")
     var life : String = jsonObject.obj().getString("life")
     var speed : String = jsonObject.obj().getString("speed")

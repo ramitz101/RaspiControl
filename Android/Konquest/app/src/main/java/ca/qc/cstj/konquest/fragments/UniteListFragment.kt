@@ -11,17 +11,18 @@ import android.view.View
 import android.view.ViewGroup
 
 import ca.qc.cstj.konquest.R
-import ca.qc.cstj.konquest.adapters.UnitRecyclerViewAdapter
-import ca.qc.cstj.konquest.helpers.UNITS_URL
+import ca.qc.cstj.konquest.adapters.UniteRecyclerViewAdapter
+import ca.qc.cstj.konquest.helpers.UNITES_URL
+import ca.qc.cstj.konquest.models.Unite
 import com.github.kittinunf.fuel.android.core.Json
 import com.github.kittinunf.fuel.android.extension.responseJson
 import com.github.kittinunf.fuel.httpGet
 
-class UnitListFragment : Fragment() {
+class UniteListFragment : Fragment() {
     // Les paramètres personnalisé.
     private var mColumnCount = 1
     private var mListener: OnListFragmentInteractionListener? = null
-    private var units = mutableListOf<Unit>()
+    private var unites = mutableListOf<Unite>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,7 +35,7 @@ class UnitListFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_unit_list, container, false)
+        val view = inflater.inflate(R.layout.fragment_unite_list, container, false)
 
         // Set the adapter
         if (view is RecyclerView) {
@@ -46,12 +47,12 @@ class UnitListFragment : Fragment() {
             }
 
             // Aller dans le recycler view des untis.
-            view.adapter = UnitRecyclerViewAdapter(units, mListener)
+            view.adapter = UniteRecyclerViewAdapter(unites, mListener)
 
-            UNITS_URL.httpGet().responseJson { request, response, result ->
+            UNITES_URL.httpGet().responseJson { request, response, result ->
                 when(response.statusCode) {
                     200 -> {
-                        createUnitList(result.get())
+                        createUniteList(result.get())
                         view.adapter.notifyDataSetChanged()
                     }
                 }
@@ -62,11 +63,11 @@ class UnitListFragment : Fragment() {
     }
 
     // la fonction qui créer la liste de units et qui insert les données à l'intérieur.
-    fun createUnitList(json: Json) {
+    fun createUniteList(json: Json) {
         // On crée un tableau.
         val tabJson = json.array()
         // On nettoie les anciennes données.
-        units.clear()
+        unites.clear()
         // On insert les nouvelles données de units.
         for( i in 0.. (json.array().length() -1 )) {
             // TODO : IL existe un packet dans Kotlin qui s'appel Unit et ici il y fait référence au lieu de notre model...
@@ -92,7 +93,7 @@ class UnitListFragment : Fragment() {
 
     interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        fun onListFragmentInteraction(unit: Unit?)
+        fun onListFragmentInteraction(unite: Unite?)
     }
 
     companion object {
@@ -101,8 +102,8 @@ class UnitListFragment : Fragment() {
         private val ARG_COLUMN_COUNT = "column-count"
 
         // TODO: Customize parameter initialization
-        fun newInstance(columnCount: Int): UnitListFragment {
-            val fragment = UnitListFragment()
+        fun newInstance(columnCount: Int): UniteListFragment {
+            val fragment = UniteListFragment()
             val args = Bundle()
             args.putInt(ARG_COLUMN_COUNT, columnCount)
             fragment.arguments = args
