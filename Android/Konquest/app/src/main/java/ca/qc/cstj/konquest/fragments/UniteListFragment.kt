@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 
 import ca.qc.cstj.konquest.R
 import ca.qc.cstj.konquest.adapters.UniteRecyclerViewAdapter
@@ -18,11 +19,12 @@ import com.github.kittinunf.fuel.android.core.Json
 import com.github.kittinunf.fuel.android.extension.responseJson
 import com.github.kittinunf.fuel.httpGet
 
-class UniteListFragment : Fragment() {
+class UniteListFragment(): Fragment() {
     // Les paramètres personnalisé.
     private var mColumnCount = 1
     private var mListener: OnListFragmentInteractionListener? = null
     private var unites = mutableListOf<Unite>()
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,6 +57,12 @@ class UniteListFragment : Fragment() {
                         createUniteList(result.get())
                         view.adapter.notifyDataSetChanged()
                     }
+                    404-> {
+                        Toast.makeText(this.context, "Erreur: ressource non trouvée!", Toast.LENGTH_SHORT).show()
+                    }
+                    503-> {
+                        Toast.makeText(this.context, "Service temporairement indisponible ou en maintenance", Toast.LENGTH_SHORT).show()
+                    }
                 }
 
             }
@@ -70,9 +78,7 @@ class UniteListFragment : Fragment() {
         unites.clear()
         // On insert les nouvelles données de units.
         for( i in 0.. (json.array().length() -1 )) {
-            // TODO : IL existe un packet dans Kotlin qui s'appel Unit et ici il y fait référence au lieu de notre model...
-            // TODO : Merci de trouver une solution.
-            //units.add(Unit(Json(tabJson[i].toString())))
+            unites.add(Unite(Json(tabJson[i].toString())))
         }
     }
 

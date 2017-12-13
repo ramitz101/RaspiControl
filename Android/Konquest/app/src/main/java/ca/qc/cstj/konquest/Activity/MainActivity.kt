@@ -1,34 +1,33 @@
 package ca.qc.cstj.konquest.Activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Button
 import android.widget.Toast
 import ca.qc.cstj.konquest.R
-import ca.qc.cstj.konquest.fragments.BarcodeReadingFragment
+import ca.qc.cstj.konquest.fragments.UniteDetailsFragment
+import ca.qc.cstj.konquest.fragments.UniteListFragment
+import ca.qc.cstj.konquest.models.Unite
 import com.google.zxing.integration.android.IntentIntegrator
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 
-class MainActivity : AppCompatActivity() {
+
+class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentInteractionListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-
-
-
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
-
 
 
         nav_left_view.setNavigationItemSelectedListener{ item ->
@@ -37,8 +36,14 @@ class MainActivity : AppCompatActivity() {
                   //  Toast.makeText(this,"Camera",Toast.LENGTH_LONG).show()
                 //}
 
-                R.id.nav_share -> {
-
+                R.id.nav_lstUnites -> {
+                    Runnable {
+                        val transaction = fragmentManager.beginTransaction()
+                        //transaction.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
+                        transaction.replace(R.id.contentFrame, UniteListFragment.newInstance(1))
+                        //transaction.addToBackStack("ListeSuccursale")
+                        transaction.commit()
+                    }.run()
                 }
 
             }
@@ -113,13 +118,8 @@ class MainActivity : AppCompatActivity() {
                 
             }
             R.id.action_scanner-> {
-                Runnable {
-                    val transaction = fragmentManager.beginTransaction()
-                    //transaction.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
-                    //transaction.replace(R.id.contentFrame, BarcodeReadingFragment.newInstance(1))
-                    transaction.addToBackStack("ListeSuccursale")
-                    transaction.commit()
-                }.run()
+
+                IntentIntegrator(this).initiateScan(); // `this` is the current Activity
             }
 
             else -> return super.onOptionsItemSelected(item)
@@ -133,5 +133,26 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    override fun onListFragmentInteraction(unite: Unite?) {
+        //nav_left_view.setNavigationItemSelectedListener(this)
+        Runnable {
+            val transaction = fragmentManager.beginTransaction()
+            transaction.replace(R.id.contentFrame, UniteDetailsFragment(unite!!.href))
+            //transaction.addToBackStack("DetailsLivre")
+            transaction.commit()
+        }.run()
+    }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
+        if (result != null) {
+            if (result.contents == null) {
+                Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(this, "Scanned: " + result.contents, Toast.LENGTH_LONG).show()
+            }
+        } else {
+            super.onActivityResult(requestCode, resultCode, data)
+        }
+    }
 }
