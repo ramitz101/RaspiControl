@@ -29,8 +29,10 @@ class ConnexionActivity : AppCompatActivity() {
 
         buttonConnexion.setOnClickListener {
 
-            var connexion = Explorateur(editTextCourriel.text.toString(),
+            var connexion = Explorateur(null,
                                         null,
+                                        null,
+                                        editTextCourriel.text.toString(),
                                         editTextMotDePasse.text.toString(),
                                         null,
                                         null,
@@ -40,24 +42,18 @@ class ConnexionActivity : AppCompatActivity() {
 
             CONNEXION_URL.httpPost()
             .header("Content-Type" to "application/json")
-            .body(connexion.toJson()).responseJson() { _, response, result ->
+            .body(connexion.toJson()).responseJson { _, response, result ->
                 when(response.statusCode) {
-                    200 -> {
+                    201 -> {
                         // On s'occupe de la transition de NON CONNECTÉ À CONNECTÉ.
                         editTextCourriel.text.clear()
                         editTextMotDePasse.text.clear()
                         Toast.makeText(this,"Connexion en cours...",Toast.LENGTH_SHORT).show()
 
                         // Mettre le token dans une variable.
-                        val jObject : JSONObject = result as JSONObject
-                        var token : String = jObject.getString("token")
+                        var token = result.get().obj().getString("token")
 
                         //Sauvegarder Token.
-                        val preferences_Token_Info : SharedPreferences? = this.getSharedPreferences(TOKEN_INFORMATION, 0)
-                        var editor_Token_Info : SharedPreferences.Editor? = preferences_Token_Info?.edit()
-                        editor_Token_Info?.putBoolean(TOKEN_INFORMATION,true)
-                        editor_Token_Info?.commit()
-
                         val preferences_Token : SharedPreferences? = this.getSharedPreferences(TOKEN, 0)
                         var editor_Token : SharedPreferences.Editor? = preferences_Token?.edit()
                         editor_Token!!.putString(TOKEN,token)
@@ -68,13 +64,10 @@ class ConnexionActivity : AppCompatActivity() {
                         startActivity(intent)
                     }
                     403 -> {
-
                     }
                     404 -> {
-
                     }
                     500 -> {
-
                     }
                 }
             }

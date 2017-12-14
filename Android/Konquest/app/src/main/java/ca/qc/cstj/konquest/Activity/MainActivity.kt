@@ -1,6 +1,7 @@
 package ca.qc.cstj.konquest.Activity
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
@@ -11,6 +12,7 @@ import android.widget.Toast
 import ca.qc.cstj.konquest.R
 import ca.qc.cstj.konquest.fragments.UniteDetailsFragment
 import ca.qc.cstj.konquest.fragments.UniteListFragment
+import ca.qc.cstj.konquest.helpers.TOKEN_INFORMATION
 import ca.qc.cstj.konquest.models.Unite
 import com.google.zxing.integration.android.IntentIntegrator
 import kotlinx.android.synthetic.main.activity_main.*
@@ -20,6 +22,9 @@ import kotlinx.android.synthetic.main.app_bar_main.*
 class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentInteractionListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        Toast.makeText(this,"Connecté.",Toast.LENGTH_SHORT).show()
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
@@ -115,7 +120,13 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
             R.id.action_settings -> return true
 
             R.id.action_deconnexion -> {
-                
+                Toast.makeText(this,"Déconnexion completé.",Toast.LENGTH_SHORT).show()
+                val preferences_Token_Info : SharedPreferences? = this.getSharedPreferences(TOKEN_INFORMATION, 0)
+                var editor_Token_Info : SharedPreferences.Editor? = preferences_Token_Info?.edit()
+                editor_Token_Info?.putBoolean(TOKEN_INFORMATION,false)
+                editor_Token_Info?.commit()
+                val intent = Intent(this@MainActivity,ConnexionActivity::class.java)
+                startActivity(intent)
             }
             R.id.action_scanner-> {
 
