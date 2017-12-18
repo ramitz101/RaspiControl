@@ -4,6 +4,7 @@ import android.app.PendingIntent.getActivity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Paint
 import android.os.Bundle
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
@@ -15,12 +16,15 @@ import ca.qc.cstj.konquest.R
 import ca.qc.cstj.konquest.fragments.UniteDetailsFragment
 import ca.qc.cstj.konquest.fragments.UniteListFragment
 import ca.qc.cstj.konquest.helpers.EXPLORATEUR_URL
+import ca.qc.cstj.konquest.helpers.RUNES_URL
 import ca.qc.cstj.konquest.helpers.TOKEN
+import ca.qc.cstj.konquest.models.Runes
 import ca.qc.cstj.konquest.models.Explorateur
 import ca.qc.cstj.konquest.models.Unite
 import com.github.kittinunf.fuel.android.extension.responseJson
 import com.github.kittinunf.fuel.httpGet
 import com.google.zxing.integration.android.IntentIntegrator
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 
@@ -43,6 +47,28 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
 
+        // Le chargement des Inox
+
+        /*RUNES_URL.httpGet().responseJson { request, response, result ->
+            when (response.statusCode) {
+                200 -> {
+                    val runes = Runes(result.get())
+                    createCommentaireList(result.get())
+                    lstCommentaires.adapter.notifyDataSetChanged()
+
+
+
+                    lblISBN.text = "ISBN: " + livre.ISBN
+
+                    lblCommentaires.paintFlags = Paint.UNDERLINE_TEXT_FLAG
+                }
+                404 -> {
+                    Toast.makeText(this.context, "Erreur: ressource non trouvée!", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }*/
+
+
         nav_left_view.setNavigationItemSelectedListener{ item ->
             when (item.itemId) {
                 //R.id.nav_camera -> {
@@ -58,48 +84,11 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
                         transaction.commit()
                     }.run()
                 }
-
             }
-
             drawer_layout.closeDrawer(GravityCompat.START)
             true
-
         }
 
-        nav_right_view.setNavigationItemSelectedListener{ item ->
-            when (item.itemId) {
-                R.id.nav_settings -> {
-
-                }
-                R.id.nav_logout -> {
-
-                }
-                R.id.nav_help -> {
-
-                }
-                R.id.nav_about -> {
-
-                }
-
-            }
-
-            drawer_layout.closeDrawer(GravityCompat.START)
-            true
-
-        }
-
-
-        nav_right_view.setNavigationItemSelectedListener{ item ->
-            when (item.itemId) {
-                R.id.nav_help -> {
-                    Toast.makeText(this,"Help",Toast.LENGTH_LONG).show()
-                }
-            }
-
-            drawer_layout.closeDrawer(GravityCompat.START)
-            true
-
-        }
 
     }
 
@@ -111,7 +100,6 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
         }else{
             super.onBackPressed()
         }
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -135,11 +123,8 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
                 IntentIntegrator(this).initiateScan() // `this` is the current Activity
                 rafraichirDataMain()
             }
-
             else -> return super.onOptionsItemSelected(item)
-
         }
-
         return true
     }
 
@@ -164,6 +149,7 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
                 Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show()
             } else {
                 Toast.makeText(this, "Scanned: " + result.contents, Toast.LENGTH_LONG).show()
+                // post exploration
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data)
