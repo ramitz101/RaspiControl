@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
 
         // Le chargement des Inox
 
-        RUNES_URL.httpGet().responseJson { request, response, result ->
+        /*RUNES_URL.httpGet().responseJson { request, response, result ->
             when (response.statusCode) {
                 200 -> {
                     val runes = Runes(result.get())
@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
                     lstCommentaires.adapter.notifyDataSetChanged()
 
 
-                    
+
                     lblISBN.text = "ISBN: " + livre.ISBN
 
                     lblCommentaires.paintFlags = Paint.UNDERLINE_TEXT_FLAG
@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
                     Toast.makeText(this.context, "Erreur: ressource non trouvée!", Toast.LENGTH_SHORT).show()
                 }
             }
-        }
+        }*/
 
 
         nav_left_view.setNavigationItemSelectedListener{ item ->

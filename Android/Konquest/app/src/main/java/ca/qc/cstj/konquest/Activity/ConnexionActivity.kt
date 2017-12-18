@@ -64,12 +64,19 @@ class ConnexionActivity : AppCompatActivity() {
                         startActivity(intent)
                     }
                     403 -> {
-
+                        Toast.makeText(this, "Erreur: forbidden!", Toast.LENGTH_SHORT).show()
                     }
-                    404 -> {
-
+                    404-> {
+                        Toast.makeText(this, "Erreur: ressource non trouvée!", Toast.LENGTH_SHORT).show()
                     }
-                    500 -> {
+                    500-> {
+                        Toast.makeText(this, "Erreur: serveur interne", Toast.LENGTH_SHORT).show()
+                    }
+                    503-> {
+                        Toast.makeText(this, "Service temporairement indisponible ou en maintenance", Toast.LENGTH_SHORT).show()
+                    }
+                    else -> {
+                        Toast.makeText(this, "Une erreur est survenue", Toast.LENGTH_SHORT).show()
 
                     }
                 }
