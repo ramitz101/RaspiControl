@@ -1,5 +1,7 @@
 package ca.qc.cstj.konquest.Activity
 
+import android.app.PendingIntent.getActivity
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -12,9 +14,12 @@ import android.widget.Toast
 import ca.qc.cstj.konquest.R
 import ca.qc.cstj.konquest.fragments.UniteDetailsFragment
 import ca.qc.cstj.konquest.fragments.UniteListFragment
+import ca.qc.cstj.konquest.helpers.EXPLORATEUR_URL
 import ca.qc.cstj.konquest.helpers.TOKEN
-import ca.qc.cstj.konquest.helpers.TOKEN_INFORMATION
+import ca.qc.cstj.konquest.models.Explorateur
 import ca.qc.cstj.konquest.models.Unite
+import com.github.kittinunf.fuel.android.extension.responseJson
+import com.github.kittinunf.fuel.httpGet
 import com.google.zxing.integration.android.IntentIntegrator
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
@@ -30,14 +35,13 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
+        rafraichirDataMain()
+
+
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
-
-        // Le chargement des Inox
-
-
 
         nav_left_view.setNavigationItemSelectedListener{ item ->
             when (item.itemId) {
@@ -124,17 +128,12 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
             R.id.action_settings -> return true
 
             R.id.action_deconnexion -> {
-                Toast.makeText(this,"Déconnexion completé.",Toast.LENGTH_SHORT).show()
-                val preferences_Token_Info : SharedPreferences? = this.getSharedPreferences(TOKEN_INFORMATION, 0)
-                var editor_Token_Info : SharedPreferences.Editor? = preferences_Token_Info?.edit()
-                editor_Token_Info?.putString(TOKEN,"")
-                editor_Token_Info?.commit()
-                val intent = Intent(this@MainActivity,ConnexionActivity::class.java)
-                startActivity(intent)
+                deconnexion()
             }
             R.id.action_scanner-> {
-
-                IntentIntegrator(this).initiateScan(); // `this` is the current Activity
+                rafraichirDataMain()
+                IntentIntegrator(this).initiateScan() // `this` is the current Activity
+                rafraichirDataMain()
             }
 
             else -> return super.onOptionsItemSelected(item)
@@ -173,5 +172,38 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
 
     fun rafraichirDataMain() {
 
+        // On obtient le token.
+        val preferences : SharedPreferences? = this.getSharedPreferences(TOKEN, 0)
+        var token = preferences?.getString(TOKEN,null)
+
+        // On prepare le token pour envoie.
+        var Authorization = "bearer " + token
+
+
+        // On effectue la requête.
+        EXPLORATEUR_URL.httpGet()
+        .header("Authorization" to Authorization)
+        .responseJson { _, response, result ->
+            when(response.statusCode) {
+                200 -> {
+
+                    val explorateur = Explorateur(result.get())
+
+                    textViewMainPseudonyme.text = explorateur.pseudonyme
+                    textViewMainInox.text = explorateur.inox.toString()
+                    textViewMainLocation.text = explorateur.location
+                }
+            }
+        }
+    }
+
+    fun deconnexion() {
+        Toast.makeText(this,"Déconnexion completé.",Toast.LENGTH_SHORT).show()
+        val preferences : SharedPreferences? = this.getSharedPreferences(TOKEN, 0)
+        var editor : SharedPreferences.Editor? = preferences?.edit()
+        editor?.putString(TOKEN,"")
+        editor?.commit()
+        val intent = Intent(this,ConnexionActivity::class.java)
+        startActivity(intent)
     }
 }

@@ -6,10 +6,10 @@ val BASE_URL = "https://andromia-maxroy1993.c9users.io/"
 val UNITES_URL = BASE_URL + "units/"
 val CONNEXION_URL = BASE_URL + "connexion"
 val ENREGISTREMENT_URL = BASE_URL + "inscription"
+val EXPLORATEUR_URL = BASE_URL + "explorateur"
 
 // Token :
 val TOKEN = "Token"
-val TOKEN_INFORMATION = "Token_Information"
 
 /*
 * Référence Token :

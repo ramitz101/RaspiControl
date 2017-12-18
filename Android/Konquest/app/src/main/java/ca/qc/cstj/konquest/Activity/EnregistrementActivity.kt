@@ -8,7 +8,6 @@ import android.widget.Toast
 import ca.qc.cstj.konquest.R
 import ca.qc.cstj.konquest.helpers.ENREGISTREMENT_URL
 import ca.qc.cstj.konquest.helpers.TOKEN
-import ca.qc.cstj.konquest.helpers.TOKEN_INFORMATION
 import ca.qc.cstj.konquest.models.Explorateur
 import com.github.kittinunf.fuel.android.extension.responseJson
 import com.github.kittinunf.fuel.httpPost
@@ -26,7 +25,6 @@ class EnregistrementActivity : AppCompatActivity() {
             var enregistrement = Explorateur(editTextCourrielEnregistrement.text.toString(),
                                              editTextPseudonymeEnregistrement.text.toString(),
                                              editTextMotDePasseEnregistrement.text.toString(),
-                                            null,
                                             null,
                                             null,
                                             null,

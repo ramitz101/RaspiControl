@@ -8,7 +8,6 @@ import android.widget.Toast
 import ca.qc.cstj.konquest.R
 import ca.qc.cstj.konquest.helpers.CONNEXION_URL
 import ca.qc.cstj.konquest.helpers.TOKEN
-import ca.qc.cstj.konquest.helpers.TOKEN_INFORMATION
 import ca.qc.cstj.konquest.models.Explorateur
 import com.github.kittinunf.fuel.android.extension.responseJson
 import com.github.kittinunf.fuel.httpPost
@@ -37,7 +36,6 @@ class ConnexionActivity : AppCompatActivity() {
                                         null,
                                         null,
                                         null,
-                                        null,
                                         null)
 
             CONNEXION_URL.httpPost()
@@ -63,12 +61,11 @@ class ConnexionActivity : AppCompatActivity() {
                         val intent = Intent(this@ConnexionActivity,MainActivity::class.java)
                         startActivity(intent)
                     }
-                    403 -> {
-                    }
-                    404 -> {
-                    }
-                    500 -> {
-                    }
+                    11401 -> { Toast.makeText(this,"Mauvais courriel ou mot de passe.",Toast.LENGTH_LONG).show() }
+                    403 -> { }
+                    404 -> { Toast.makeText(this,"Votre compte est introuvable.",Toast.LENGTH_LONG).show() }
+                    500 -> { Toast.makeText(this,"Le serveur à une erreur interne.",Toast.LENGTH_LONG).show() }
+                    503 -> { Toast.makeText(this,"Le serveur est en maintenance. Merci de patienter.",Toast.LENGTH_LONG).show() }
                 }
             }
         }
