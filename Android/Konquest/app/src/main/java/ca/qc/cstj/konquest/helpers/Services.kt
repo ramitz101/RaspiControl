@@ -5,7 +5,7 @@ package ca.qc.cstj.konquest.helpers
 val BASE_URL = "https://andromia-maxroy1993.c9users.io/"
 val UNITES_URL = BASE_URL + "units/"
 val CONNEXION_URL = BASE_URL + "connexion"
-val ENREGISTREMENT_URL = BASE_URL + "enregistrement"
+val ENREGISTREMENT_URL = BASE_URL + "inscription"
 
 // Token :
 val TOKEN = "Token"

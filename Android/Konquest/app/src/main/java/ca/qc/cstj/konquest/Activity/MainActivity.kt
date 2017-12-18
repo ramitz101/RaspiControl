@@ -12,6 +12,7 @@ import android.widget.Toast
 import ca.qc.cstj.konquest.R
 import ca.qc.cstj.konquest.fragments.UniteDetailsFragment
 import ca.qc.cstj.konquest.fragments.UniteListFragment
+import ca.qc.cstj.konquest.helpers.TOKEN
 import ca.qc.cstj.konquest.helpers.TOKEN_INFORMATION
 import ca.qc.cstj.konquest.models.Unite
 import com.google.zxing.integration.android.IntentIntegrator
@@ -33,6 +34,9 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
+
+        // Le chargement des Inox
+
 
 
         nav_left_view.setNavigationItemSelectedListener{ item ->
@@ -102,7 +106,7 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
                 Toast.makeText(this,"Déconnexion completé.",Toast.LENGTH_SHORT).show()
                 val preferences_Token_Info : SharedPreferences? = this.getSharedPreferences(TOKEN_INFORMATION, 0)
                 var editor_Token_Info : SharedPreferences.Editor? = preferences_Token_Info?.edit()
-                editor_Token_Info?.putBoolean(TOKEN_INFORMATION,false)
+                editor_Token_Info?.putString(TOKEN,"")
                 editor_Token_Info?.commit()
                 val intent = Intent(this@MainActivity,ConnexionActivity::class.java)
                 startActivity(intent)
@@ -142,5 +146,9 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
         } else {
             super.onActivityResult(requestCode, resultCode, data)
         }
+    }
+
+    fun rafraichirDataMain() {
+
     }
 }
