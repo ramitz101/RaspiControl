@@ -6,13 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import ca.qc.cstj.konquest.R
 
-import ca.qc.cstj.konquest.fragments.UnitListFragment.OnListFragmentInteractionListener
+import ca.qc.cstj.konquest.fragments.UniteListFragment.OnListFragmentInteractionListener
+import ca.qc.cstj.konquest.models.Unite
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.card_unite.view.*
 
-class UnitRecyclerViewAdapter(private val mValues: List<Unit>, private val mListener: OnListFragmentInteractionListener?) : RecyclerView.Adapter<UnitRecyclerViewAdapter.ViewHolder>() {
+class UniteRecyclerViewAdapter(private val mValues: List<Unite>,
+                               private val mListener: OnListFragmentInteractionListener?) : RecyclerView.Adapter<UniteRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.fragment_unit, parent, false)
+                .inflate(R.layout.card_unite, parent, false)
         return ViewHolder(view)
     }
 
@@ -22,7 +26,7 @@ class UnitRecyclerViewAdapter(private val mValues: List<Unit>, private val mList
         //holder.mContentView.text = mValues[position].content
 
         holder.mView.setOnClickListener {
-            mListener!!.onListFragmentInteraction(holder.unit)
+            mListener!!.onListFragmentInteraction(holder.unite)
         }
     }
 
@@ -31,17 +35,22 @@ class UnitRecyclerViewAdapter(private val mValues: List<Unit>, private val mList
     }
 
     inner class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
-        //val mIdView: TextView
-        //val mContentView: TextView
-        var unit: Unit? = null
+
+        var lblName = mView.lblName
+        var imgUnite = mView.imgUnite
+        var unite: Unite? = null
 
         init {
             //mIdView = mView.findViewById(R.id.id) as TextView
             //mContentView = mView.findViewById(R.id.content) as TextView
         }
 
-        fun bind(unit: Unit){
-            this.unit = unit
+        fun bind(unite: Unite){
+
+            // Image
+            Picasso.with(imgUnite.context).load(unite.imageURL).fit().centerInside().into(imgUnite)
+            lblName.text = unite.name
+            this.unite = unite
         }
 
         //override fun toString(): String {

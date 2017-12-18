@@ -6,8 +6,11 @@
     android:name="ca.qc.cstj.konquest.fragments.unitFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
-    tools:context="ca.qc.cstj.konquest.fragments.UnitListFragment"
-    tools:listitem="@layout/fragment_unit" />
+    tools:context="ca.qc.cstj.konquest.fragments.UniteListFragment"
+    tools:listitem="@layout/card_unite">
+
+
+
+
+</android.support.v7.widget.RecyclerView>
