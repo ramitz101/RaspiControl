@@ -64,10 +64,13 @@ class ConnexionActivity : AppCompatActivity() {
                         startActivity(intent)
                     }
                     403 -> {
+
                     }
                     404 -> {
+
                     }
                     500 -> {
+
                     }
                 }
             }

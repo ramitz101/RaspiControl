@@ -2,6 +2,7 @@ package ca.qc.cstj.konquest.Activity
 
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Paint
 import android.os.Bundle
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
@@ -12,10 +13,15 @@ import android.widget.Toast
 import ca.qc.cstj.konquest.R
 import ca.qc.cstj.konquest.fragments.UniteDetailsFragment
 import ca.qc.cstj.konquest.fragments.UniteListFragment
+import ca.qc.cstj.konquest.helpers.RUNES_URL
 import ca.qc.cstj.konquest.helpers.TOKEN
 import ca.qc.cstj.konquest.helpers.TOKEN_INFORMATION
+import ca.qc.cstj.konquest.models.Runes
 import ca.qc.cstj.konquest.models.Unite
+import com.github.kittinunf.fuel.android.extension.responseJson
+import com.github.kittinunf.fuel.httpGet
 import com.google.zxing.integration.android.IntentIntegrator
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 
@@ -37,6 +43,24 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
 
         // Le chargement des Inox
 
+        RUNES_URL.httpGet().responseJson { request, response, result ->
+            when (response.statusCode) {
+                200 -> {
+                    val runes = Runes(result.get())
+                    createCommentaireList(result.get())
+                    lstCommentaires.adapter.notifyDataSetChanged()
+
+
+                    
+                    lblISBN.text = "ISBN: " + livre.ISBN
+
+                    lblCommentaires.paintFlags = Paint.UNDERLINE_TEXT_FLAG
+                }
+                404 -> {
+                    Toast.makeText(this.context, "Erreur: ressource non trouvée!", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
 
 
         nav_left_view.setNavigationItemSelectedListener{ item ->
@@ -59,24 +83,7 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
             true
         }
 
-        nav_right_view.setNavigationItemSelectedListener{ item ->
-            when (item.itemId) {
-                R.id.nav_air -> {
 
-                }
-                R.id.nav_life -> {
-
-                }
-                R.id.nav_fire -> {
-
-                }
-                R.id.nav_water -> {
-
-                }
-            }
-            drawer_layout.closeDrawer(GravityCompat.START)
-            true
-        }
     }
 
     override fun onBackPressed() {
