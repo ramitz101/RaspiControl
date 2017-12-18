@@ -50,49 +50,29 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
                         transaction.commit()
                     }.run()
                 }
-
             }
-
             drawer_layout.closeDrawer(GravityCompat.START)
             true
-
         }
 
         nav_right_view.setNavigationItemSelectedListener{ item ->
             when (item.itemId) {
-                R.id.nav_settings -> {
+                R.id.nav_air -> {
 
                 }
-                R.id.nav_logout -> {
+                R.id.nav_life -> {
 
                 }
-                R.id.nav_help -> {
+                R.id.nav_fire -> {
 
                 }
-                R.id.nav_about -> {
+                R.id.nav_water -> {
 
-                }
-
-            }
-
-            drawer_layout.closeDrawer(GravityCompat.START)
-            true
-
-        }
-
-
-        nav_right_view.setNavigationItemSelectedListener{ item ->
-            when (item.itemId) {
-                R.id.nav_help -> {
-                    Toast.makeText(this,"Help",Toast.LENGTH_LONG).show()
                 }
             }
-
             drawer_layout.closeDrawer(GravityCompat.START)
             true
-
         }
-
     }
 
     override fun onBackPressed() {
@@ -103,7 +83,6 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
         }else{
             super.onBackPressed()
         }
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -132,11 +111,8 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
 
                 IntentIntegrator(this).initiateScan(); // `this` is the current Activity
             }
-
             else -> return super.onOptionsItemSelected(item)
-
         }
-
         return true
     }
 
@@ -161,6 +137,7 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
                 Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show()
             } else {
                 Toast.makeText(this, "Scanned: " + result.contents, Toast.LENGTH_LONG).show()
+                // post exploration
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data)

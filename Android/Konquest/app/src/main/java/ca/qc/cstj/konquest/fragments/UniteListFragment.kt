@@ -60,8 +60,15 @@ class UniteListFragment(): Fragment() {
                     404-> {
                         Toast.makeText(this.context, "Erreur: ressource non trouvée!", Toast.LENGTH_SHORT).show()
                     }
+                    401-> {
+                        Toast.makeText(this.context, "Erreur: vous devez être connecté pour faire ceci", Toast.LENGTH_SHORT).show()
+                    }
                     503-> {
                         Toast.makeText(this.context, "Service temporairement indisponible ou en maintenance", Toast.LENGTH_SHORT).show()
+                    }
+                    else -> {
+                        Toast.makeText(this.context, "Une erreur est survenue", Toast.LENGTH_SHORT).show()
+
                     }
                 }
 
