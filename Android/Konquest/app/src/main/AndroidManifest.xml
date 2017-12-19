@@ -28,6 +28,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activity.EnregistrementActivity"></activity>
+        <activity android:name=".Activity.MainActivity"></activity>
     </application>
 
 </manifest>

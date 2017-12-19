@@ -9,13 +9,19 @@ import android.os.Bundle
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
+import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import ca.qc.cstj.konquest.R
+import ca.qc.cstj.konquest.R.id.nav_air
+
+import ca.qc.cstj.konquest.R.menu.activity_right_drawer
+import ca.qc.cstj.konquest.R.id.nav_earth
 import ca.qc.cstj.konquest.fragments.UniteDetailsFragment
 import ca.qc.cstj.konquest.fragments.UniteListFragment
 import ca.qc.cstj.konquest.helpers.EXPLORATEUR_URL
+import ca.qc.cstj.konquest.helpers.PORTALKEY_URL
 import ca.qc.cstj.konquest.helpers.RUNES_URL
 import ca.qc.cstj.konquest.helpers.TOKEN
 import ca.qc.cstj.konquest.models.Runes
@@ -23,10 +29,12 @@ import ca.qc.cstj.konquest.models.Explorateur
 import ca.qc.cstj.konquest.models.Unite
 import com.github.kittinunf.fuel.android.extension.responseJson
 import com.github.kittinunf.fuel.httpGet
+import com.github.kittinunf.fuel.httpPost
 import com.google.zxing.integration.android.IntentIntegrator
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.fragment_unite.view.*
 
 
 class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentInteractionListener {
@@ -47,26 +55,16 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
 
-        // Le chargement des Inox
 
-        /*RUNES_URL.httpGet().responseJson { request, response, result ->
-            when (response.statusCode) {
-                200 -> {
-                    val runes = Runes(result.get())
-                    createCommentaireList(result.get())
-                    lstCommentaires.adapter.notifyDataSetChanged()
+        afficherRunes()
 
 
+        // On obtient le token.
+        val preferences : SharedPreferences? = this.getSharedPreferences(TOKEN, 0)
+        var token = preferences?.getString(TOKEN,null)
 
-                    lblISBN.text = "ISBN: " + livre.ISBN
-
-                    lblCommentaires.paintFlags = Paint.UNDERLINE_TEXT_FLAG
-                }
-                404 -> {
-                    Toast.makeText(this.context, "Erreur: ressource non trouvée!", Toast.LENGTH_SHORT).show()
-                }
-            }
-        }*/
+        // On prepare le token pour envoie.
+        var Authorization = "bearer " + token
 
 
         nav_left_view.setNavigationItemSelectedListener{ item ->
@@ -79,7 +77,7 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
                     Runnable {
                         val transaction = fragmentManager.beginTransaction()
                         //transaction.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
-                        transaction.replace(R.id.contentFrame, UniteListFragment.newInstance(1))
+                        transaction.replace(R.id.contentFrame, UniteListFragment(Authorization))
                         //transaction.addToBackStack("ListeSuccursale")
                         transaction.commit()
                     }.run()
@@ -149,7 +147,7 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
                 Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show()
             } else {
                 Toast.makeText(this, "Scanned: " + result.contents, Toast.LENGTH_LONG).show()
-                // post exploration
+                postPortalKey(result.contents)
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data)
@@ -191,5 +189,73 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
         editor?.commit()
         val intent = Intent(this,ConnexionActivity::class.java)
         startActivity(intent)
+    }
+
+
+
+    fun afficherRunes() {
+
+
+
+        // On obtient le token.
+        val preferences : SharedPreferences? = this.getSharedPreferences(TOKEN, 0)
+        var token = preferences?.getString(TOKEN,null)
+
+        // On prepare le token pour envoie.
+        var Authorization = "bearer " + token
+
+
+        RUNES_URL.httpGet()
+        .header("Authorization" to Authorization)
+        .responseJson{ request, response, result ->
+            when (response.statusCode) {
+                200 -> {
+                    val runes = Runes(result.get())
+
+                    //nav_air.title = runes.air
+
+
+
+
+
+
+
+
+
+                }
+                404 -> {
+                    Toast.makeText(this, "Erreur: ressource non trouvée!", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
+    fun postPortalKey(key:String) {
+
+        val URL = PORTALKEY_URL + key
+
+        URL.httpPost()
+                .responseJson{ request, response, result ->
+                    when (response.statusCode) {
+                        200 -> {
+
+                            Toast.makeText(this, "Erreur: ressource non trouvée!", Toast.LENGTH_SHORT).show()
+
+
+
+
+
+
+
+
+
+
+                        }
+                        404 -> {
+                            Toast.makeText(this, "Erreur: ressource non trouvée!", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+
     }
 }

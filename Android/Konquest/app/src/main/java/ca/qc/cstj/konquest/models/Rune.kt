@@ -17,9 +17,9 @@ data class Rune(@Expose var air : Json?,
                 @Expose var toxic : Json?,
                 @Expose var water : Json?
                 ) {
-    constructor(json: Json) : this(
+   /* constructor(json: Json) : this(
                                     )
-
+*/
     fun toJson() : String =
             GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(this)
 }

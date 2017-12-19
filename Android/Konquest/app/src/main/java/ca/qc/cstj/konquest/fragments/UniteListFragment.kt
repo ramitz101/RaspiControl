@@ -3,6 +3,8 @@ package ca.qc.cstj.konquest.fragments
 import android.content.Context
 import android.os.Bundle
 import android.app.Fragment
+import android.content.SharedPreferences
+import android.os.TokenWatcher
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -10,21 +12,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import ca.qc.cstj.konquest.Activity.MainActivity
 
 import ca.qc.cstj.konquest.R
 import ca.qc.cstj.konquest.adapters.UniteRecyclerViewAdapter
+import ca.qc.cstj.konquest.helpers.TOKEN
 import ca.qc.cstj.konquest.helpers.UNITES_URL
 import ca.qc.cstj.konquest.models.Unite
 import com.github.kittinunf.fuel.android.core.Json
 import com.github.kittinunf.fuel.android.extension.responseJson
 import com.github.kittinunf.fuel.httpGet
 
-class UniteListFragment(): Fragment() {
+class UniteListFragment(private val pToken:String): Fragment() {
     // Les paramètres personnalisé.
     private var mColumnCount = 1
     private var mListener: OnListFragmentInteractionListener? = null
     private var unites = mutableListOf<Unite>()
-
+    val token = pToken
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,7 +55,12 @@ class UniteListFragment(): Fragment() {
             // Aller dans le recycler view des untis.
             view.adapter = UniteRecyclerViewAdapter(unites, mListener)
 
-            UNITES_URL.httpGet().responseJson { request, response, result ->
+
+
+
+            UNITES_URL.httpGet()
+            .header("Authorization" to token)
+            .responseJson { request, response, result ->
                 when(response.statusCode) {
                     200 -> {
                         createUniteList(result.get())
@@ -109,18 +118,18 @@ class UniteListFragment(): Fragment() {
         fun onListFragmentInteraction(unite: Unite?)
     }
 
-    companion object {
+   companion object {
 
         // TODO: Customize parameter argument names
         private val ARG_COLUMN_COUNT = "column-count"
 
-        // TODO: Customize parameter initialization
+       /* // TODO: Customize parameter initialization
         fun newInstance(columnCount: Int): UniteListFragment {
-            val fragment = UniteListFragment()
+            val fragment = UniteListFragment(salut:String)
             val args = Bundle()
             args.putInt(ARG_COLUMN_COUNT, columnCount)
             fragment.arguments = args
             return fragment
-        }
+        }*/
     }
 }

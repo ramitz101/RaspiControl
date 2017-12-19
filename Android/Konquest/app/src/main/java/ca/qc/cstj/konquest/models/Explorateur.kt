@@ -13,7 +13,8 @@ data class Explorateur (@Expose var courriel : String?,
                    var inox : Double?,
                    @Expose var location : String?,
                    var runes : String?,
-                   var hrefExplorateur : String?) {
+                   var hrefExplorateur : String?
+        ) {
 
     constructor(json: Json) : this(json.obj().getString("courriel"),
                                    json.obj().getString("pseudonyme"),
@@ -23,7 +24,8 @@ data class Explorateur (@Expose var courriel : String?,
                                    json.obj().getDouble("inox"),
                                    json.obj().getString("location"),
                                    json.obj().getString("runes"),
-                                   json.obj().getString("hrefExplorateur"))
+                                   json.obj().getString("href")
+            )
     fun toJson() : String =
             GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(this)
 }

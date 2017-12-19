@@ -1,54 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_air"
-            android:icon="@drawable/ic_menu_share"
-            android:title="air" />
-        <item
-            android:id="@+id/nav_darkness"
-            android:icon="@drawable/ic_menu_send"
-            android:title="darkness" />
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context="ca.qc.cstj.konquest.Activity.MainActivity"
+    xmlns:tools="http://schemas.android.com/tools">
 
-        <item
-            android:id="@+id/nav_earth"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="earth" />
-        <item
-            android:id="@+id/nav_energy"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="energy" />
-        <item
-            android:id="@+id/nav_fire"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="fire" />
-        <item
-            android:id="@+id/nav_life"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="life" />
-        <item
-            android:id="@+id/nav_light"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="light" />
-        <item
-            android:id="@+id/nav_logic"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="logic" />
-        <item
-            android:id="@+id/nav_music"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="music" />
-        <item
-            android:id="@+id/nav_space"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="space" />
-        <item
-            android:id="@+id/nav_toxic"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="toxic" />
-        <item
-            android:id="@+id/nav_water"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="water" />
-    </group>
+    <item
+        android:id="@+id/nav_air"
+        android:icon="@drawable/ic_menu_share"
+        android:title="air" />
+    <item
+        android:id="@+id/nav_darkness"
+        android:icon="@drawable/ic_menu_send"
+        android:title="darkness" />
+
+    <item
+        android:id="@+id/nav_earth"
+        android:icon="@drawable/ic_menu_camera"
+        android:title="earth"  />
+    <item
+        android:id="@+id/nav_energy"
+        android:icon="@drawable/ic_menu_gallery"
+        android:title="energy" />
+    <item
+        android:id="@+id/nav_fire"
+        android:icon="@drawable/ic_menu_gallery"
+        android:title="fire" />
+    <item
+        android:id="@+id/nav_life"
+        android:icon="@drawable/ic_menu_gallery"
+        android:title="life" />
+    <item
+        android:id="@+id/nav_light"
+        android:icon="@drawable/ic_menu_gallery"
+        android:title="light" />
+    <item
+        android:id="@+id/nav_logic"
+        android:icon="@drawable/ic_menu_gallery"
+        android:title="logic" />
+    <item
+        android:id="@+id/nav_music"
+        android:icon="@drawable/ic_menu_gallery"
+        android:title="music" />
+    <item
+        android:id="@+id/nav_space"
+        android:icon="@drawable/ic_menu_gallery"
+        android:title="space" />
+    <item
+        android:id="@+id/nav_toxic"
+        android:icon="@drawable/ic_menu_gallery"
+        android:title="toxic" />
+    <item
+        android:id="@+id/nav_water"
+        android:icon="@drawable/ic_menu_gallery"
+        android:title="water" />
+
 </menu>
