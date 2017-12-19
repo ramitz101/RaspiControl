@@ -238,10 +238,16 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
                 .responseJson{ request, response, result ->
                     when (response.statusCode) {
                         200 -> {
-
+                            // le protail existe
                             Toast.makeText(this, "Erreur: ressource non trouvée!", Toast.LENGTH_SHORT).show()
 
 
+
+
+                            // 1. regarder si il y a une unite
+                            // 2. est ce que je peux la débloquer. si oui offrir l'option de la débloquer et terminer le voyage. si non, aucune option
+                            // 3.ajouter les runes ou les soustraire. et la unite si il la débloquée
+                            // 4. créer un exploration dans la liste d'exploration
 
 
 
@@ -252,7 +258,8 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
 
                         }
                         404 -> {
-                            Toast.makeText(this, "Erreur: ressource non trouvée!", Toast.LENGTH_SHORT).show()
+                            // le portail existe pas
+                            Toast.makeText(this, "Erreur: ce portail mène vers le néant", Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
