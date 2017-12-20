@@ -13,7 +13,7 @@ import ca.qc.cstj.konquest.R
 /**
  * A simple [Fragment] subclass.
  */
-class ExplorationDetailsFragment : Fragment() {
+class ExplorationDetailsFragment(private val authorization:String, private val portaKey:String) : Fragment() {
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,

@@ -14,6 +14,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import ca.qc.cstj.konquest.R
+import ca.qc.cstj.konquest.fragments.ExplorationDetailsFragment
 import ca.qc.cstj.konquest.fragments.RunesFragment
 import ca.qc.cstj.konquest.fragments.UniteDetailsFragment
 import ca.qc.cstj.konquest.fragments.UniteListFragment
@@ -137,6 +138,7 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
                 deconnexion()
             }
             R.id.action_scanner-> {
+
                 postPortalKey("6F11EF96-B3A5-414D-909E-0F8EB9A2B045")
                 rafraichirDataMain()
                 /*IntentIntegrator(this).initiateScan() // `this` is the current Activity*/
@@ -166,8 +168,11 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
             if (result.contents == null) {
                 Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show()
             } else {
-                Toast.makeText(this, "Scanned: " + result.contents, Toast.LENGTH_LONG).show()
-                postPortalKey(result.contents)
+                Runnable {
+                    val transaction = fragmentManager.beginTransaction()
+                    transaction.replace(R.id.contentFrame, ExplorationDetailsFragment(authorization, result.contents))
+                    transaction.commit()
+                }.run()
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data)

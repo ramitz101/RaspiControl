@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import ca.qc.cstj.konquest.R
+import ca.qc.cstj.konquest.adapters.ExplorationRecyclerViewAdapter
 import ca.qc.cstj.konquest.fragments.dummy.DummyContent
 import ca.qc.cstj.konquest.fragments.dummy.DummyContent.DummyItem
 
