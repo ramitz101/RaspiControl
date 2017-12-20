@@ -6,7 +6,9 @@
         android:id="@+id/nav_lstUnites"
         android:icon="@drawable/ic_menu_share"
         android:title="@string/action_lstUnites" />
-
-
+    <item
+        android:id="@+id/nav_lstExplorations"
+        android:icon="@drawable/ic_menu_share"
+        android:title="@string/action_lstExplorations" />
 
 </menu>

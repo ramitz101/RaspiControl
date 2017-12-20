@@ -30,13 +30,13 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 
 
-class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentInteractionListener, RunesFragment.OnFragmentInteractionListener {
+class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentInteractionListener {
 
 
-    override fun onFragmentInteraction(uri: Uri) {
+    /*override fun onFragmentInteraction(uri: Uri) {
         // Pour le fragment Runes.
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    }*/
 
     var authorization : String = ""
 

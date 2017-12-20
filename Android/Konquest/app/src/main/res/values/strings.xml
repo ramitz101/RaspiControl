@@ -15,6 +15,7 @@
     <string name="action_enregistrement">Enregistrement</string>
     <string name="action_scanner">Scanner</string>
     <string name="action_lstUnites">Liste des Unites</string>
+    <string name="action_lstExplorations">Liste des Exploration</string>
     <string name="action_konquest">Konquest</string>
     <string name="action_inox">Inox :</string>
     <string name="action_location">Location :</string>
