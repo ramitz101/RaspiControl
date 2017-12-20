@@ -12,8 +12,8 @@ import android.view.ViewGroup
 
 import ca.qc.cstj.konquest.R
 import ca.qc.cstj.konquest.adapters.ExplorationRecyclerViewAdapter
-import ca.qc.cstj.konquest.fragments.dummy.DummyContent
-import ca.qc.cstj.konquest.fragments.dummy.DummyContent.DummyItem
+
+import ca.qc.cstj.konquest.models.Exploration
 
 /**
  * A fragment representing a list of Items.
@@ -26,11 +26,11 @@ import ca.qc.cstj.konquest.fragments.dummy.DummyContent.DummyItem
  * Mandatory empty constructor for the fragment manager to instantiate the
  * fragment (e.g. upon screen orientation changes).
  */
-class ExplorationFragment : Fragment() {
+class ExplorationListFragment : Fragment() {
 
     // TODO: Customize parameters
     private val mColumnCount = 1
-
+    private var explorations = mutableListOf<Exploration>()
     private var mListener: OnListFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,7 +50,7 @@ class ExplorationFragment : Fragment() {
             } else {
                 view.layoutManager = GridLayoutManager(context, mColumnCount)
             }
-            view.adapter = ExplorationRecyclerViewAdapter(DummyContent.ITEMS, mListener)
+            view.adapter = ExplorationRecyclerViewAdapter(explorations, mListener)
         }
         return view
     }
@@ -81,6 +81,6 @@ class ExplorationFragment : Fragment() {
      */
     interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        fun onListFragmentInteraction(item: DummyItem)
+        fun onListFragmentInteraction(item: Exploration)
     }
 }

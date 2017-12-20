@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import ca.qc.cstj.konquest.R
 
-import ca.qc.cstj.konquest.fragments.ExplorationFragment.OnListFragmentInteractionListener
+import ca.qc.cstj.konquest.fragments.ExplorationListFragment.OnListFragmentInteractionListener
 import ca.qc.cstj.konquest.models.Exploration
 
 
