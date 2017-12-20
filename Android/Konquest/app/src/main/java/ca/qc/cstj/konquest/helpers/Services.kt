@@ -12,6 +12,7 @@ val PORTALKEY_URL = "http://api.andromia.science/protals/"
 
 // Token :
 val TOKEN = "Token"
+val TOKEN_INFORMATION = "Token Information"
 
 /*
 * Référence Token :

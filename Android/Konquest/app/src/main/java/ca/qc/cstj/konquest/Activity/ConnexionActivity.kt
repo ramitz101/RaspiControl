@@ -8,6 +8,7 @@ import android.widget.Toast
 import ca.qc.cstj.konquest.R
 import ca.qc.cstj.konquest.helpers.CONNEXION_URL
 import ca.qc.cstj.konquest.helpers.TOKEN
+import ca.qc.cstj.konquest.helpers.TOKEN_INFORMATION
 import ca.qc.cstj.konquest.models.Explorateur
 import com.github.kittinunf.fuel.android.extension.responseJson
 import com.github.kittinunf.fuel.httpPost
@@ -22,11 +23,16 @@ class ConnexionActivity : AppCompatActivity() {
         setContentView(R.layout.activity_connexion)
 
         // On obtient le token.
-        val preferences : SharedPreferences? = this.getSharedPreferences(TOKEN, 0)
-        var token = preferences?.getString(TOKEN,null)
+        val preferences_token : SharedPreferences? = this.getSharedPreferences(TOKEN, 0)
+        var token = preferences_token?.getString(TOKEN,null)
+
+        // On obtient si le token est bon.
+        val preferences_token_information : SharedPreferences? = this.getSharedPreferences(TOKEN_INFORMATION, 0)
+        var token_information = preferences_token_information?.getBoolean(TOKEN_INFORMATION,false)
+
 
         // Si le token n'égale pas rien, on connecte.
-        if(token != "")
+        if(token != "" && token_information == true)
         {
             val intent = Intent(this@ConnexionActivity,MainActivity::class.java)
             startActivity(intent)
@@ -70,6 +76,12 @@ class ConnexionActivity : AppCompatActivity() {
                         var editor_Token : SharedPreferences.Editor? = preferences_Token?.edit()
                         editor_Token!!.putString(TOKEN,token)
                         editor_Token?.commit()
+
+                        // On indique que le token est bon.
+                        val preferences_tokenInformation : SharedPreferences? = this.getSharedPreferences(ca.qc.cstj.konquest.helpers.TOKEN_INFORMATION, 0)
+                        var editor_tokenInformation : SharedPreferences.Editor? = preferences_tokenInformation?.edit()
+                        editor_tokenInformation?.putBoolean(TOKEN_INFORMATION,true)
+                        editor_tokenInformation?.commit()
 
                         // On change d'activity.
                         val intent = Intent(this@ConnexionActivity,MainActivity::class.java)
