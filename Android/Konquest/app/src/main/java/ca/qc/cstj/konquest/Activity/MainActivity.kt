@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Paint
 import android.os.Bundle
+import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
@@ -14,10 +15,9 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import ca.qc.cstj.konquest.R
-import ca.qc.cstj.konquest.R.id.nav_air
+import ca.qc.cstj.konquest.R.id.*
 
 import ca.qc.cstj.konquest.R.menu.activity_right_drawer
-import ca.qc.cstj.konquest.R.id.nav_earth
 import ca.qc.cstj.konquest.fragments.UniteDetailsFragment
 import ca.qc.cstj.konquest.fragments.UniteListFragment
 import ca.qc.cstj.konquest.helpers.EXPLORATEUR_URL
@@ -38,6 +38,8 @@ import kotlinx.android.synthetic.main.fragment_unite.view.*
 
 
 class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentInteractionListener {
+
+    var Authorization : String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -64,7 +66,7 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
         var token = preferences?.getString(TOKEN,null)
 
         // On prepare le token pour envoie.
-        var Authorization = "bearer " + token
+        Authorization = "bearer " + token
 
 
         nav_left_view.setNavigationItemSelectedListener{ item ->
@@ -156,14 +158,6 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
 
     fun rafraichirDataMain() {
 
-        // On obtient le token.
-        val preferences : SharedPreferences? = this.getSharedPreferences(TOKEN, 0)
-        var token = preferences?.getString(TOKEN,null)
-
-        // On prepare le token pour envoie.
-        var Authorization = "bearer " + token
-
-
         // On effectue la requête.
         EXPLORATEUR_URL.httpGet()
         .header("Authorization" to Authorization)
@@ -195,16 +189,6 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
 
     fun afficherRunes() {
 
-
-
-        // On obtient le token.
-        val preferences : SharedPreferences? = this.getSharedPreferences(TOKEN, 0)
-        var token = preferences?.getString(TOKEN,null)
-
-        // On prepare le token pour envoie.
-        var Authorization = "bearer " + token
-
-
         RUNES_URL.httpGet()
         .header("Authorization" to Authorization)
         .responseJson{ request, response, result ->
@@ -212,16 +196,43 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
                 200 -> {
                     val runes = Runes(result.get())
 
-                    //nav_air.title = runes.air
+/*
 
+                    // On appel la barre de navigation.
+                    var navigationView = findViewById(R.id.nav_right_view)
 
+                    // On demande le menu.
+                    var menu = navigationView.menu
 
+                    // On prepare les noms :
+                    var title_rune_air = "Air : " + runes.air
+                    var title_rune_darkness = "Darkness : " + runes.darkness
+                    var title_rune_earth = "Earth : " + runes.earth
+                    var title_rune_energy = "Energy : " + runes.energy
+                    var title_rune_fire = "Fire : " + runes.fire
+                    var title_rune_life = "Life : " + runes.life
+                    var title_rune_light = "Light : " + runes.light
+                    var title_rune_logic = "Logic : " + runes.logic
+                    var title_rune_music = "Music : " + runes.music
+                    var title_rune_space = "Space : " + runes.space
+                    var title_rune_toxic = "Toxic : " + runes.toxic
+                    var title_rune_water = "Water : " + runes.water
 
+                    // On change les Runes.
+                    menu.findItem(R.id.nav_air).setTitle(title_rune_air)
+                    menu.findItem(R.id.nav_darkness).setTitle(title_rune_darkness)
+                    menu.findItem(R.id.nav_earth).setTitle(title_rune_earth)
+                    menu.findItem(R.id.nav_energy).setTitle(title_rune_energy)
+                    menu.findItem(R.id.nav_fire).setTitle(title_rune_fire)
+                    menu.findItem(R.id.nav_life).setTitle(title_rune_life)
+                    menu.findItem(R.id.nav_light).setTitle(title_rune_light)
+                    menu.findItem(R.id.nav_logic).setTitle(title_rune_logic)
+                    menu.findItem(R.id.nav_music).setTitle(title_rune_music)
+                    menu.findItem(R.id.nav_space).setTitle(title_rune_space)
+                    menu.findItem(R.id.nav_toxic).setTitle(title_rune_toxic)
+                    menu.findItem(R.id.nav_water).setTitle(title_rune_water)
 
-
-
-
-
+                    //navigationView.setNavigationItemSelectedListener(this"")*/
                 }
                 404 -> {
                     Toast.makeText(this, "Erreur: ressource non trouvée!", Toast.LENGTH_SHORT).show()

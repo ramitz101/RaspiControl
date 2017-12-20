@@ -21,11 +21,25 @@ class ConnexionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_connexion)
 
+        // On obtient le token.
+        val preferences : SharedPreferences? = this.getSharedPreferences(TOKEN, 0)
+        var token = preferences?.getString(TOKEN,null)
+
+        // Si le token n'égale pas rien, on connecte.
+        if(token != "")
+        {
+            val intent = Intent(this@ConnexionActivity,MainActivity::class.java)
+            startActivity(intent)
+        }
+
+
+        // Aller sur l'activity d'enregistrement.
         buttonLienEnregistrement.setOnClickListener {
             val intent = Intent(this@ConnexionActivity,EnregistrementActivity::class.java)
             startActivity(intent)
         }
 
+        // On tente de se connecter.
         buttonConnexion.setOnClickListener {
 
             var connexion = Explorateur(null,
@@ -61,7 +75,7 @@ class ConnexionActivity : AppCompatActivity() {
                         val intent = Intent(this@ConnexionActivity,MainActivity::class.java)
                         startActivity(intent)
                     }
-                    11401 -> { Toast.makeText(this,"Mauvais courriel ou mot de passe.",Toast.LENGTH_LONG).show() }
+                    401 -> { Toast.makeText(this,"Mauvais courriel ou mot de passe.",Toast.LENGTH_LONG).show() }
                     403 -> { }
                     404 -> { Toast.makeText(this,"Votre compte est introuvable.",Toast.LENGTH_LONG).show() }
                     500 -> { Toast.makeText(this,"Le serveur à une erreur interne.",Toast.LENGTH_LONG).show() }

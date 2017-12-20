@@ -21,4 +21,18 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="air">air</string>
+    <string name="darkness">darkness</string>
+    <string name="earth">earth</string>
+    <string name="energy">energy</string>
+    <string name="fire">fire</string>
+    <string name="life">life</string>
+    <string name="light">light</string>
+    <string name="logic">logic</string>
+    <string name="music">music</string>
+    <string name="space">space</string>
+    <string name="toxic">toxic</string>
+    <string name="water">water</string>
+    <string name="runes">Runes</string>
+    <string name="l_image_de_la_rune">L\'image de la rune.</string>
 </resources>
