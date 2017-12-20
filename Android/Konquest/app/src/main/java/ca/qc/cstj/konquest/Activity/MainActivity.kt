@@ -1,10 +1,11 @@
 package ca.qc.cstj.konquest.Activity
 
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
-import android.support.v4.app.FragmentActivity
+import android.os.Handler
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
@@ -16,10 +17,7 @@ import ca.qc.cstj.konquest.R
 import ca.qc.cstj.konquest.fragments.RunesFragment
 import ca.qc.cstj.konquest.fragments.UniteDetailsFragment
 import ca.qc.cstj.konquest.fragments.UniteListFragment
-import ca.qc.cstj.konquest.helpers.EXPLORATEUR_URL
-import ca.qc.cstj.konquest.helpers.PORTALKEY_URL
-import ca.qc.cstj.konquest.helpers.RUNES_URL
-import ca.qc.cstj.konquest.helpers.TOKEN
+import ca.qc.cstj.konquest.helpers.*
 import ca.qc.cstj.konquest.models.Runes
 import ca.qc.cstj.konquest.models.Explorateur
 import ca.qc.cstj.konquest.models.Unite
@@ -39,17 +37,35 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }*/
 
+
+    // Ressources : https://stackoverflow.com/questions/11434056/how-to-run-a-method-every-x-seconds
+    fun automatiqueFunction(context: Context)
+    {
+        val handler = Handler()
+        val delay : Long = 1000 //milliseconds
+
+        handler.postDelayed(object : Runnable {
+            override fun run() {
+                // Fait le code que l'on veut répété.
+
+                rafraichirDataMain()
+
+                handler.postDelayed(this, delay)
+            }
+        }, delay)
+    }
+
     var authorization : String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
+        automatiqueFunction(this)
         Toast.makeText(this,"Connecté.",Toast.LENGTH_SHORT).show()
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        rafraichirDataMain()
+
 
 
         val toggle = ActionBarDrawerToggle(
@@ -124,7 +140,6 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
                 postPortalKey("6F11EF96-B3A5-414D-909E-0F8EB9A2B045")
                 rafraichirDataMain()
                 /*IntentIntegrator(this).initiateScan() // `this` is the current Activity*/
-                rafraichirDataMain()
             }
             else -> return super.onOptionsItemSelected(item)
         }
@@ -179,13 +194,25 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
     }
 
     fun deconnexion() {
-        Toast.makeText(this,"Déconnexion completé.",Toast.LENGTH_SHORT).show()
-        val preferences : SharedPreferences? = this.getSharedPreferences(TOKEN, 0)
-        var editor : SharedPreferences.Editor? = preferences?.edit()
-        editor?.putString(TOKEN,"")
-        editor?.commit()
+
+        // On indique que le token n'est pas bon.
+        val preferences_tokenInformation : SharedPreferences? = this.getSharedPreferences(ca.qc.cstj.konquest.helpers.TOKEN_INFORMATION, 0)
+        var editor_tokenInformation : SharedPreferences.Editor? = preferences_tokenInformation?.edit()
+        editor_tokenInformation?.putBoolean(TOKEN_INFORMATION,false)
+        editor_tokenInformation?.commit()
+
+        // On supprime le token.
+        val preferences_token : SharedPreferences? = this.getSharedPreferences(TOKEN, 0)
+        var editor_token : SharedPreferences.Editor? = preferences_token?.edit()
+        editor_token?.putString(TOKEN,"")
+        editor_token?.commit()
+
+        // On envoie à l'écran de connexion.
         val intent = Intent(this,ConnexionActivity::class.java)
         startActivity(intent)
+
+        // On indique que la déconnexion est complété.
+        Toast.makeText(this,"Déconnexion completé.",Toast.LENGTH_SHORT).show()
     }
 
 
