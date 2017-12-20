@@ -1,0 +1,34 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ca.qc.cstj.konquest.fragments.RunesFragment">
+
+
+    <LinearLayout
+        android:id="@+id/LienarLayoutFenetreRunes"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/LinearLayoutRuneAir"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/ImageViewRuneAir"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/air" />
+
+            <TextView
+                android:id="@+id/TextViewRuneAir"
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</FrameLayout>

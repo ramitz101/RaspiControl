@@ -1,24 +1,18 @@
 package ca.qc.cstj.konquest.Activity
 
-import android.app.PendingIntent.getActivity
-import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import android.graphics.Paint
+import android.net.Uri
 import android.os.Bundle
-import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils.isEmpty
-import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import ca.qc.cstj.konquest.R
-import ca.qc.cstj.konquest.R.id.*
-
-import ca.qc.cstj.konquest.R.menu.activity_right_drawer
+import ca.qc.cstj.konquest.fragments.RunesFragment
 import ca.qc.cstj.konquest.fragments.UniteDetailsFragment
 import ca.qc.cstj.konquest.fragments.UniteListFragment
 import ca.qc.cstj.konquest.helpers.EXPLORATEUR_URL
@@ -32,15 +26,19 @@ import com.github.kittinunf.fuel.android.extension.responseJson
 import com.github.kittinunf.fuel.httpGet
 import com.github.kittinunf.fuel.httpPost
 import com.google.zxing.integration.android.IntentIntegrator
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
-import kotlinx.android.synthetic.main.fragment_unite.view.*
 
 
-class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentInteractionListener {
+class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentInteractionListener, RunesFragment.OnFragmentInteractionListener {
 
-    var Authorization : String = ""
+
+    override fun onFragmentInteraction(uri: Uri) {
+        // Pour le fragment Runes.
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    var authorization : String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -62,12 +60,14 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
         afficherRunes()
 
 
+
+
         // On obtient le token.
         val preferences : SharedPreferences? = this.getSharedPreferences(TOKEN, 0)
         var token = preferences?.getString(TOKEN,null)
 
         // On prepare le token pour envoie.
-        Authorization = "bearer " + token
+        authorization = "bearer " + token
 
 
         nav_left_view.setNavigationItemSelectedListener{ item ->
@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
                     Runnable {
                         val transaction = fragmentManager.beginTransaction()
                         //transaction.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
-                        transaction.replace(R.id.contentFrame, UniteListFragment(Authorization))
+                        transaction.replace(R.id.contentFrame, UniteListFragment(authorization))
                         //transaction.addToBackStack("ListeUnite")
                         transaction.commit()
                     }.run()
@@ -161,7 +161,7 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
 
         // On effectue la requête.
         EXPLORATEUR_URL.httpGet()
-        .header("Authorization" to Authorization)
+        .header("Authorization" to authorization)
         .responseJson { _, response, result ->
             when(response.statusCode) {
                 200 -> {
@@ -191,7 +191,7 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
     fun afficherRunes() {
 
         RUNES_URL.httpGet()
-        .header("Authorization" to Authorization)
+        .header("Authorization" to authorization)
         .responseJson{ request, response, result ->
             when (response.statusCode) {
                 200 -> {
