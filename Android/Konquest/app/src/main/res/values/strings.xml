@@ -36,4 +36,7 @@
     <string name="water">water</string>
     <string name="runes">Runes</string>
     <string name="l_image_de_la_rune">L\'image de la rune.</string>
+    <string name="fin_voyage"> Mettre fin au voyage</string>
+    <string name="debloquer_unit">Débloquer la unite</string>
+
 </resources>
