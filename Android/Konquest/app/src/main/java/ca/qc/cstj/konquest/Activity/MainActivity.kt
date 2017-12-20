@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
+import android.support.v4.app.FragmentActivity
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
@@ -34,7 +35,7 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
 
 
     /*override fun onFragmentInteraction(uri: Uri) {
-        // Pour le fragment Runes.
+        // Pour le fragment_exploration_details Runes.
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }*/
 
@@ -120,8 +121,9 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
                 deconnexion()
             }
             R.id.action_scanner-> {
+                postPortalKey("6F11EF96-B3A5-414D-909E-0F8EB9A2B045")
                 rafraichirDataMain()
-                IntentIntegrator(this).initiateScan() // `this` is the current Activity
+                /*IntentIntegrator(this).initiateScan() // `this` is the current Activity*/
                 rafraichirDataMain()
             }
             else -> return super.onOptionsItemSelected(item)
@@ -247,6 +249,7 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
         val URL = PORTALKEY_URL + key
 
         URL.httpGet()
+
         .responseJson{ request, response, result ->
             when (response.statusCode) {
                 200 -> {

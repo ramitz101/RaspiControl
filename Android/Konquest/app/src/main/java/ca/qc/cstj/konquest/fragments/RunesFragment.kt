@@ -60,7 +60,7 @@ class RunesFragment : Fragment() {
                 }
 
 
-        // Inflate the layout for this fragment
+        // Inflate the layout for this fragment_exploration_details
         return inflater.inflate(R.layout.fragment_runes, container, false)
     }
 
@@ -92,7 +92,7 @@ class RunesFragment : Fragment() {
 
     companion object {
         // TODO: Rename parameter arguments, choose names that match
-        // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+        // the fragment_exploration_details initialization parameters, e.g. ARG_ITEM_NUMBER
         private val ARG_PARAM1 = "Authorization"
 
         fun newInstance(param1: String): RunesFragment {

@@ -125,11 +125,11 @@ class UniteListFragment(private val pToken:String): Fragment() {
 
        /* // TODO: Customize parameter initialization
         fun newInstance(columnCount: Int): UniteListFragment {
-            val fragment = UniteListFragment(salut:String)
+            val fragment_exploration_details = UniteListFragment(salut:String)
             val args = Bundle()
             args.putInt(ARG_COLUMN_COUNT, columnCount)
-            fragment.arguments = args
-            return fragment
+            fragment_exploration_details.arguments = args
+            return fragment_exploration_details
         }*/
     }
 }

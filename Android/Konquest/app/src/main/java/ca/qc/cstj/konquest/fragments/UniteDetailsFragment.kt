@@ -14,11 +14,11 @@ import com.github.kittinunf.fuel.httpGet
 
 /**
  * A simple [Fragment] subclass.
- * Activities that contain this fragment must implement the
+ * Activities that contain this fragment_exploration_details must implement the
  * [UniteDetailsFragment.OnFragmentInteractionListener] interface
  * to handle interaction events.
  * Use the [UniteDetailsFragment.newInstance] factory method to
- * create an instance of this fragment.
+ * create an instance of this fragment_exploration_details.
  */
 class UniteDetailsFragment(private val href:String) : Fragment() {
 
@@ -27,7 +27,7 @@ class UniteDetailsFragment(private val href:String) : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle): View? {
 
-        // Inflate the layout for this fragment
+        // Inflate the layout for this fragment_exploration_details
         val url = href
         url.httpGet().responseJson { request, response, result ->
             when(response.httpStatusCode){
@@ -48,7 +48,7 @@ class UniteDetailsFragment(private val href:String) : Fragment() {
             }
         }
 
-        // Inflate the layout for this fragment
+        // Inflate the layout for this fragment_exploration_details
         return inflater.inflate(R.layout.fragment_unite_details, container, false)
     }
 
