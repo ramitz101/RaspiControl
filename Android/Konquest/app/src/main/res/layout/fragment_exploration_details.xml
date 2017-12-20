@@ -5,9 +5,363 @@
     tools:context="ca.qc.cstj.konquest.fragments.ExplorationDetailsFragment">
 
     <!-- TODO: Update blfragment_exploration_detailsment layout -->
-    <TextView
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="30dp"
+        android:layout_weight="3"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="vos runes"
+            android:gravity="center"
+            />
+        <TextView
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="le coût de la unit"
+            android:gravity="center"/>
+        <TextView
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="résultat si achat"
+            android:gravity="center"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:orientation="horizontal"
+        >
+        <LinearLayout
+            android:layout_width="111dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <LinearLayout
+                android:layout_width="111dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:text="@string/air" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:text="@string/darkness" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:text="@string/earth" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:text="@string/energy" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:text="@string/fire" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:text="@string/life" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:text="@string/light" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:text="@string/logic" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:text="@string/music" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:text="@string/space" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:text="@string/toxic" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:text="@string/water" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="111dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:id="@+id/air"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    />
+                <TextView
+                    android:id="@+id/darkness"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    />
+                <TextView
+                    android:id="@+id/earth"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    />
+                <TextView
+                    android:id="@+id/energy"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    />
+                <TextView
+                    android:id="@+id/fire"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    />
+                <TextView
+                    android:id="@+id/life"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    />
+                <TextView
+                    android:id="@+id/light"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    />
+                <TextView
+                    android:id="@+id/logic"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    />
+                <TextView
+                    android:id="@+id/music"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    />
+                <TextView
+                    android:id="@+id/space"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    />
+                <TextView
+                    android:id="@+id/toxic"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    />
+                <TextView
+                    android:id="@+id/water"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    />
+
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="111dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            >
+
+
+            <TextView
+                android:id="@+id/unite_air"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                />
+            <TextView
+                android:id="@+id/unite_darkness"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                />
+            <TextView
+                android:id="@+id/unite_earth"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                />
+            <TextView
+                android:id="@+id/unite_energy"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                />
+            <TextView
+                android:id="@+id/unite_fire"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                />
+            <TextView
+                android:id="@+id/unite_life"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                />
+            <TextView
+                android:id="@+id/unite_light"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                />
+            <TextView
+                android:id="@+id/unite_logic"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                />
+            <TextView
+                android:id="@+id/unite_music"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                />
+            <TextView
+                android:id="@+id/unite_space"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                />
+            <TextView
+                android:id="@+id/unite_toxic"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                />
+            <TextView
+                android:id="@+id/unite_water"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="111dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            >
+
+
+            <TextView
+                android:id="@+id/result_air"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                />
+            <TextView
+                android:id="@+id/result_darkness"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                />
+            <TextView
+                android:id="@+id/result_earth"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                />
+            <TextView
+                android:id="@+id/result_energy"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                />
+            <TextView
+                android:id="@+id/result_fire"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                />
+            <TextView
+                android:id="@+id/result_life"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                />
+            <TextView
+                android:id="@+id/result_light"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                />
+            <TextView
+                android:id="@+id/result_logic"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                />
+            <TextView
+                android:id="@+id/result_music"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                />
+            <TextView
+                android:id="@+id/result_space"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                />
+            <TextView
+                android:id="@+id/result_toxic"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                />
+            <TextView
+                android:id="@+id/result_water"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="300dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <ImageView
+            android:layout_weight="1"
+
+            android:layout_height="200dp" />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                />
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal"
+        android:layout_gravity="bottom"
+        >
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="@string/fin_voyage"
+            />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="@string/debloquer_unit"
+            />
+    </LinearLayout>
+
+
 
 </FrameLayout>

@@ -148,9 +148,6 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
         return true
     }
 
-    fun updateMenuConnexionTitle(item: MenuItem) {
-
-    }
 
     override fun onListFragmentInteraction(unite: Unite?) {
         //nav_left_view.setNavigationItemSelectedListener(this)
@@ -170,7 +167,7 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
             } else {
                 Runnable {
                     val transaction = fragmentManager.beginTransaction()
-                    transaction.replace(R.id.contentFrame, ExplorationDetailsFragment(authorization, result.contents))
+                    transaction.replace(R.id.contentFrame, ExplorationDetailsFragment.newInstance(authorization, result.contents))
                     transaction.commit()
                 }.run()
             }
@@ -278,41 +275,12 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
 
     fun postPortalKey(key:String) {
 
-        val URL = PORTALKEY_URL + key
-
-        URL.httpGet()
-
-        .responseJson{ request, response, result ->
-            when (response.statusCode) {
-                200 -> {
-                    // le protail existe
-                    Toast.makeText(this, "Le portail est grand ouvert!", Toast.LENGTH_SHORT).show()
-
-                    val obj = response
-                    /*if(isEmpty(obj)) {
-
-                    }*/
+        Runnable {
+            val transaction = fragmentManager.beginTransaction()
+            transaction.replace(R.id.contentFrame, ExplorationDetailsFragment.newInstance(authorization, key))
+            transaction.commit()
+        }.run()
 
 
-
-                    // 1. regarder si il y a une unite
-                    // 2. est ce que je peux la débloquer. si oui offrir l'option de la débloquer et terminer le voyage. si non, aucune option
-                    // 3.ajouter les runes ou les soustraire. et la unite si il la débloquée
-                    // 4. créer un exploration dans la liste d'exploration
-
-
-
-
-
-
-
-
-                }
-                404 -> {
-                    // le portail existe pas
-                    Toast.makeText(this, "Erreur: ce portail mène au néant", Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
     }
 }
