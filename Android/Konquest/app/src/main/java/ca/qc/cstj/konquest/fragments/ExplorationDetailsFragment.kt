@@ -12,6 +12,7 @@ import ca.qc.cstj.konquest.R
 import ca.qc.cstj.konquest.helpers.PORTALKEY_URL
 import com.github.kittinunf.fuel.android.extension.responseJson
 import com.github.kittinunf.fuel.httpGet
+import kotlinx.android.synthetic.main.fragment_exploration_details.*
 
 
 /**
@@ -42,21 +43,35 @@ class ExplorationDetailsFragment : Fragment() {
         .responseJson{ request, response, result ->
             when (response.statusCode) {
                 200 -> {
-
-                    var exploration = result.get()
                     // le protail existe
-                    if(  exploration.obj()["unit"].toString() == "{}")
-                    {
+                    var exploration = result.get()
+                    var explorationRunes = exploration.obj()["runes"].toString()
 
+                    unite_air.text = explorationRunes[0].toString()
+                    unite_darkness.text = explorationRunes[1].toString()
+
+                    // true si il y a des runes et une unite
+                    if ( exploration.obj()["unit"].toString() != "{}" && exploration.obj()["runes"].toString() != "{}")
+                    {
+                        //
+                        if(  exploration.obj()["unit"].toString() != "{}")
+                        {
+
+                        }else {
+                            //unite vide
+                            debloquer_unite.isEnabled = false // boutton non disponible
+
+                        }
+
+                        if (exploration.obj()["runes"].toString() != "{}")
+                        {
+
+                        }else{
+                            // runes vide
+
+                        }
                     }else {
-
-                    }
-
-                    if (exploration.obj()["runes"].toString() == "{}")
-                    {
-
-                    }else{
-
+                       unite_air.text = exploration.obj()["runes"].toString()
                     }
 
                     // 1. regarder si il y a une unite
