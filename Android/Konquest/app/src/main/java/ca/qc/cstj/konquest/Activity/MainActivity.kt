@@ -10,6 +10,7 @@ import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
+import android.text.TextUtils.isEmpty
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
@@ -80,7 +81,7 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
                         val transaction = fragmentManager.beginTransaction()
                         //transaction.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
                         transaction.replace(R.id.contentFrame, UniteListFragment(Authorization))
-                        //transaction.addToBackStack("ListeSuccursale")
+                        //transaction.addToBackStack("ListeUnite")
                         transaction.commit()
                     }.run()
                 }
@@ -196,17 +197,17 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
                 200 -> {
                     val runes = Runes(result.get())
 
-/*
+
 
                     // On appel la barre de navigation.
-                    var navigationView = findViewById(R.id.nav_right_view)
+                    //var navigationView = findViewById(R.id.nav_right_view)
 
                     // On demande le menu.
-                    var menu = navigationView.menu
+                    //var menu = navigationView.menu
 
                     // On prepare les noms :
-                    var title_rune_air = "Air : " + runes.air
-                    var title_rune_darkness = "Darkness : " + runes.darkness
+                    //var title_rune_air = "Air : " + runes.air
+                    /*var title_rune_darkness = "Darkness : " + runes.darkness
                     var title_rune_earth = "Earth : " + runes.earth
                     var title_rune_energy = "Energy : " + runes.energy
                     var title_rune_fire = "Fire : " + runes.fire
@@ -216,11 +217,11 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
                     var title_rune_music = "Music : " + runes.music
                     var title_rune_space = "Space : " + runes.space
                     var title_rune_toxic = "Toxic : " + runes.toxic
-                    var title_rune_water = "Water : " + runes.water
+                    var title_rune_water = "Water : " + runes.water*/
 
                     // On change les Runes.
-                    menu.findItem(R.id.nav_air).setTitle(title_rune_air)
-                    menu.findItem(R.id.nav_darkness).setTitle(title_rune_darkness)
+                    //menu.findItem(R.id.nav_right_view).setTitle(title_rune_air)
+                    /*menu.findItem(R.id.nav_darkness).setTitle(title_rune_darkness)
                     menu.findItem(R.id.nav_earth).setTitle(title_rune_earth)
                     menu.findItem(R.id.nav_energy).setTitle(title_rune_energy)
                     menu.findItem(R.id.nav_fire).setTitle(title_rune_fire)
@@ -230,9 +231,9 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
                     menu.findItem(R.id.nav_music).setTitle(title_rune_music)
                     menu.findItem(R.id.nav_space).setTitle(title_rune_space)
                     menu.findItem(R.id.nav_toxic).setTitle(title_rune_toxic)
-                    menu.findItem(R.id.nav_water).setTitle(title_rune_water)
+                    menu.findItem(R.id.nav_water).setTitle(title_rune_water)*/
 
-                    //navigationView.setNavigationItemSelectedListener(this"")*/
+                    //navigationView.setNavigationItemSelectedListener(this)
                 }
                 404 -> {
                     Toast.makeText(this, "Erreur: ressource non trouvée!", Toast.LENGTH_SHORT).show()
@@ -245,35 +246,38 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
 
         val URL = PORTALKEY_URL + key
 
-        URL.httpPost()
-                .responseJson{ request, response, result ->
-                    when (response.statusCode) {
-                        200 -> {
-                            // le protail existe
-                            Toast.makeText(this, "Erreur: ressource non trouvée!", Toast.LENGTH_SHORT).show()
+        URL.httpGet()
+        .responseJson{ request, response, result ->
+            when (response.statusCode) {
+                200 -> {
+                    // le protail existe
+                    Toast.makeText(this, "Le portail est grand ouvert!", Toast.LENGTH_SHORT).show()
+
+                    val obj = response
+                    /*if(isEmpty(obj)) {
+
+                    }*/
+
+
+
+                    // 1. regarder si il y a une unite
+                    // 2. est ce que je peux la débloquer. si oui offrir l'option de la débloquer et terminer le voyage. si non, aucune option
+                    // 3.ajouter les runes ou les soustraire. et la unite si il la débloquée
+                    // 4. créer un exploration dans la liste d'exploration
 
 
 
 
-                            // 1. regarder si il y a une unite
-                            // 2. est ce que je peux la débloquer. si oui offrir l'option de la débloquer et terminer le voyage. si non, aucune option
-                            // 3.ajouter les runes ou les soustraire. et la unite si il la débloquée
-                            // 4. créer un exploration dans la liste d'exploration
 
 
 
 
-
-
-
-
-                        }
-                        404 -> {
-                            // le portail existe pas
-                            Toast.makeText(this, "Erreur: ce portail mène vers le néant", Toast.LENGTH_SHORT).show()
-                        }
-                    }
                 }
-
+                404 -> {
+                    // le portail existe pas
+                    Toast.makeText(this, "Erreur: ce portail mène au néant", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
     }
 }
