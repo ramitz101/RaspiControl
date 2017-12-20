@@ -1,18 +1,15 @@
 package ca.qc.cstj.konquest.Activity
 
 import android.content.Intent
-import android.content.SharedPreferences
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import ca.qc.cstj.konquest.R
 import ca.qc.cstj.konquest.helpers.ENREGISTREMENT_URL
-import ca.qc.cstj.konquest.helpers.TOKEN
 import ca.qc.cstj.konquest.models.Explorateur
 import com.github.kittinunf.fuel.android.extension.responseJson
 import com.github.kittinunf.fuel.httpPost
 import kotlinx.android.synthetic.main.activity_enregistrement.*
-import org.json.JSONObject
 
 class EnregistrementActivity : AppCompatActivity() {
 

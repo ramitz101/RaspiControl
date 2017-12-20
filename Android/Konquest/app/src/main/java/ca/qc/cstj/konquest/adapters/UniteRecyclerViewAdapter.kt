@@ -40,11 +40,6 @@ class UniteRecyclerViewAdapter(private val mValues: List<Unite>,
         var imgUnite = mView.imgUnite
         var unite: Unite? = null
 
-        init {
-            //mIdView = mView.findViewById(R.id.id) as TextView
-            //mContentView = mView.findViewById(R.id.content) as TextView
-        }
-
         fun bind(unite: Unite){
 
             // Image
@@ -52,9 +47,5 @@ class UniteRecyclerViewAdapter(private val mValues: List<Unite>,
             lblName.text = unite.name
             this.unite = unite
         }
-
-        //override fun toString(): String {
-         //   return super.toString() + " '" + mContentView.text + "'"
-        //}
     }
 }
