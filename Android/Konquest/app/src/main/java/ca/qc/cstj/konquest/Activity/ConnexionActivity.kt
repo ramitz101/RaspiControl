@@ -13,7 +13,6 @@ import ca.qc.cstj.konquest.models.Explorateur
 import com.github.kittinunf.fuel.android.extension.responseJson
 import com.github.kittinunf.fuel.httpPost
 import kotlinx.android.synthetic.main.activity_connexion.*
-import org.json.JSONObject
 
 
 class ConnexionActivity : AppCompatActivity() {

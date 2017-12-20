@@ -9,13 +9,13 @@ import android.os.Handler
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
-import android.text.TextUtils.isEmpty
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.LinearLayout
 import android.widget.Toast
 import ca.qc.cstj.konquest.R
+import ca.qc.cstj.konquest.fragments.AccueilFragment
 import ca.qc.cstj.konquest.fragments.ExplorationDetailsFragment
-import ca.qc.cstj.konquest.fragments.RunesFragment
 import ca.qc.cstj.konquest.fragments.UniteDetailsFragment
 import ca.qc.cstj.konquest.fragments.UniteListFragment
 import ca.qc.cstj.konquest.helpers.*
@@ -24,13 +24,18 @@ import ca.qc.cstj.konquest.models.Explorateur
 import ca.qc.cstj.konquest.models.Unite
 import com.github.kittinunf.fuel.android.extension.responseJson
 import com.github.kittinunf.fuel.httpGet
-import com.github.kittinunf.fuel.httpPost
 import com.google.zxing.integration.android.IntentIntegrator
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 
 
-class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentInteractionListener {
+class MainActivity : AppCompatActivity(),
+        UniteListFragment.OnListFragmentInteractionListener,
+        AccueilFragment.OnFragmentInteractionListener
+{
+    override fun onFragmentInteraction(uri: Uri) {
+        // Fragment Accueil.
+    }
 
 
     /*override fun onFragmentInteraction(uri: Uri) {
@@ -40,45 +45,23 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
 
 
     // Ressources : https://stackoverflow.com/questions/11434056/how-to-run-a-method-every-x-seconds
-    fun automatiqueFunction(context: Context)
-    {
-        val handler = Handler()
-        val delay : Long = 1000 //milliseconds
 
-        handler.postDelayed(object : Runnable {
-            override fun run() {
-                // Fait le code que l'on veut répété.
-
-                rafraichirDataMain()
-
-                handler.postDelayed(this, delay)
-            }
-        }, delay)
-    }
 
     var authorization : String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        automatiqueFunction(this)
-        Toast.makeText(this,"Connecté.",Toast.LENGTH_SHORT).show()
+
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-
-
-
 
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
 
-
         afficherRunes()
-
-
-
 
         // On obtient le token.
         val preferences : SharedPreferences? = this.getSharedPreferences(TOKEN, 0)
@@ -93,13 +76,22 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
                 //R.id.nav_camera -> {
                   //  Toast.makeText(this,"Camera",Toast.LENGTH_LONG).show()
                 //}
+                R.id.nav_accueil -> {
+                    Runnable {
+                        val transaction = fragmentManager.beginTransaction()
+                        transaction.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
+                        transaction.replace(R.id.contentFrame, AccueilFragment.newInstance(authorization))
+                        transaction.addToBackStack("AccueilNavigation")
+                        transaction.commit()
+                    }
+                }
 
                 R.id.nav_lstUnites -> {
                     Runnable {
                         val transaction = fragmentManager.beginTransaction()
-                        //transaction.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
-                        transaction.replace(R.id.contentFrame, UniteListFragment(authorization))
-                        //transaction.addToBackStack("ListeUnite")
+                        transaction.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
+                        transaction.replace(R.id.contentFrame, UniteListFragment.newInstance(authorization))
+                        transaction.addToBackStack("ListUnite")
                         transaction.commit()
                     }.run()
                 }
@@ -108,7 +100,12 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
             true
         }
 
-
+        val transaction = fragmentManager.beginTransaction()
+        transaction.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
+        transaction.replace(R.id.contentFrame, AccueilFragment.newInstance(authorization))
+        transaction.addToBackStack("Accueil")
+        transaction.commit()
+        Toast.makeText(this,"Connecté.",Toast.LENGTH_SHORT).show()
     }
 
     override fun onBackPressed() {
@@ -140,7 +137,6 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
             R.id.action_scanner-> {
 
                 postPortalKey("6F11EF96-B3A5-414D-909E-0F8EB9A2B045")
-                rafraichirDataMain()
                 /*IntentIntegrator(this).initiateScan() // `this` is the current Activity*/
             }
             else -> return super.onOptionsItemSelected(item)
@@ -173,25 +169,6 @@ class MainActivity : AppCompatActivity(), UniteListFragment.OnListFragmentIntera
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data)
-        }
-    }
-
-    fun rafraichirDataMain() {
-
-        // On effectue la requête.
-        EXPLORATEUR_URL.httpGet()
-        .header("Authorization" to authorization)
-        .responseJson { _, response, result ->
-            when(response.statusCode) {
-                200 -> {
-
-                    val explorateur = Explorateur(result.get())
-
-                    textViewMainPseudonyme.text = explorateur.pseudonyme
-                    textViewMainInox.text = explorateur.inox.toString()
-                    textViewMainLocation.text = explorateur.location
-                }
-            }
         }
     }
 
