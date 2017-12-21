@@ -4,7 +4,6 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
-import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
@@ -35,7 +34,8 @@ import org.json.JSONObject
 class MainActivity : AppCompatActivity(),
         OnListFragmentInformationUnique,
         AccueilFragment.OnFragmentInteractionListener,
-        RunesFragment.OnFragmentInteractionListener
+        RunesFragment.OnFragmentInteractionListener,
+        MapFragment.OnFragmentInteractionListener
 {
     override fun onListFragmentInteraction(item: Item?) {
 
@@ -118,6 +118,7 @@ class MainActivity : AppCompatActivity(),
                         val transaction = fragmentManager.beginTransaction()
                         transaction.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
                         transaction.replace(R.id.contentFrame, AccueilFragment.newInstance(authorization))
+
                         transaction.commit()
                     }.run()
                 }
@@ -156,11 +157,13 @@ class MainActivity : AppCompatActivity(),
             true
         }
 
-        val transaction = fragmentManager.beginTransaction()
-        transaction.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
-        transaction.replace(R.id.contentFrame, AccueilFragment.newInstance(authorization))
-        transaction.commit()
-        Toast.makeText(this,"Connecté.",Toast.LENGTH_SHORT).show()
+        Runnable {
+            val transaction = fragmentManager.beginTransaction()
+            transaction.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
+            transaction.replace(R.id.contentFrame, AccueilFragment.newInstance(authorization))
+            transaction.commit()
+            Toast.makeText(this,"Connecté.",Toast.LENGTH_SHORT).show()
+        }.run()
     }
 
     override fun onBackPressed() {

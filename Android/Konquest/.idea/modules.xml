@@ -3,9 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Konquest.iml" filepath="$PROJECT_DIR$/Konquest.iml" />
-      <module fileurl="file://C:\Users\Maitre\Desktop\New folder\tpes\Android\Konquest\Konquest.iml" filepath="C:\Users\Maitre\Desktop\New folder\tpes\Android\Konquest\Konquest.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Users\Maitre\Desktop\New folder\tpes\Android\Konquest\app\app.iml" filepath="C:\Users\Maitre\Desktop\New folder\tpes\Android\Konquest\app\app.iml" />
     </modules>
   </component>
 </project>

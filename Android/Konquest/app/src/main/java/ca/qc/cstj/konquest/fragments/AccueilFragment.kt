@@ -27,6 +27,20 @@ class AccueilFragment : Fragment() {
 
     }
 
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        buttonMapAndromia.setOnClickListener {
+            Runnable {
+                val transaction = fragmentManager.beginTransaction()
+                transaction.replace(R.id.contentFrame, MapFragment.newInstance(authorization))
+                transaction.addToBackStack("MapAndromia")
+                transaction.commit()
+            }.run()
+        }
+
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
