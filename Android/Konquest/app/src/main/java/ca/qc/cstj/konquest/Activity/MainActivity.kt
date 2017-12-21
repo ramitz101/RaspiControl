@@ -34,12 +34,9 @@ import org.json.JSONObject
 
 class MainActivity : AppCompatActivity(),
         UniteListFragment.OnListFragmentInteractionListener,
-        AccueilFragment.OnFragmentInteractionListener, ExplorationDetailsFragment.OnClickListener
+        AccueilFragment.OnFragmentInteractionListener
 {
     override fun onFragmentInteraction(uri: Uri) {
-        // Fragment Accueil.
-    }
-    override fun OnClickListener(item: Exploration) {
         // Fragment Accueil.
     }
 
@@ -93,7 +90,6 @@ class MainActivity : AppCompatActivity(),
                         val transaction = fragmentManager.beginTransaction()
                         transaction.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
                         transaction.replace(R.id.contentFrame, AccueilFragment.newInstance(authorization))
-                        //transaction.addToBackStack("AccueilNavigation")
                         transaction.commit()
                     }
                 }
@@ -103,7 +99,6 @@ class MainActivity : AppCompatActivity(),
                         val transaction = fragmentManager.beginTransaction()
                         transaction.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
                         transaction.replace(R.id.contentFrame, UniteListFragment.newInstance(authorization))
-                        transaction.addToBackStack("ListUnite")
                         transaction.commit()
                     }.run()
                 }
@@ -115,7 +110,6 @@ class MainActivity : AppCompatActivity(),
         val transaction = fragmentManager.beginTransaction()
         transaction.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
         transaction.replace(R.id.contentFrame, AccueilFragment.newInstance(authorization))
-        transaction.addToBackStack("Accueil")
         transaction.commit()
         Toast.makeText(this,"Connecté.",Toast.LENGTH_SHORT).show()
     }
