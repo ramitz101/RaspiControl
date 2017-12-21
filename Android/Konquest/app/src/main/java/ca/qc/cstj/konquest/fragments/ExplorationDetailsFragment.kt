@@ -147,7 +147,7 @@ class ExplorationDetailsFragment : Fragment() {
                     exploration.getString("destination"),
                     explorateurUser.getString("location"),
                     explorationRunesString,
-                    emptyUnit
+                    emptyUnit,""
 
             )
             var explorateurEnJson = explorationConstruite.toJson()
@@ -185,7 +185,7 @@ class ExplorationDetailsFragment : Fragment() {
                     exploration.getString("destination"),
                     explorateurUser.getString("location"),
                     explorationRunesString,
-                    exploration.getString("unit")
+                    exploration.getString("unit"),""
 
             )
             var explorateurEnJson = explorationConstruite.toJson()

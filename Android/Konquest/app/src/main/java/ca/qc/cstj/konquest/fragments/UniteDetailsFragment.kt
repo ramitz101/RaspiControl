@@ -11,6 +11,7 @@ import ca.qc.cstj.konquest.R
 import ca.qc.cstj.konquest.models.Unite
 import com.github.kittinunf.fuel.android.extension.responseJson
 import com.github.kittinunf.fuel.httpGet
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_unite_details.*
 
 /**
@@ -36,7 +37,11 @@ class UniteDetailsFragment(private val href:String,private val auth:String) : Fr
             when(response.statusCode){
                 200-> {
                     val unite = Unite(result.get())
+
                     lblName.text = unite.name
+                    lblLifeQte.text = unite.life
+                    lblSpeedQte.text = unite.speed
+                   // Picasso.with(imgUnite.context).load(unite.imageURL).fit().centerInside().into(im)
 
                 }
                 404-> {
