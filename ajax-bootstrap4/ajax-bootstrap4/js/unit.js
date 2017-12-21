@@ -27,7 +27,7 @@ $(document).ready(function(){
 				chaineUnit += "<tr>";
 				for(let weapons in unit.runes.weapons){
 					let arme = unit.runes.weapons[weapons];
-					chaineUnit += "<td><img src='./img/weapons/"+arme+".png' alt='"+arme+"' /></td>";
+					chaineUnit += "<td><img id='unitWeapon' src='./img/weapons/"+arme+".png' alt='"+arme+"' /></td>";
 				}	
 				chaineUnit += "</tr>";
 				chaineUnit += "<tr>";
