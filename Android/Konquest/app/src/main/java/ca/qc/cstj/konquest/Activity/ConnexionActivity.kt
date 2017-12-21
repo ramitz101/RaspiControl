@@ -49,12 +49,13 @@ class ConnexionActivity : AppCompatActivity() {
             var connexion = Explorateur(null,
                                         null,
                                         null,
-                                        /*"test@test.com",*/editTextCourriel.text.toString(),
-                                        /*"123",*/editTextMotDePasse.text.toString(),
+                                        "test@test.com",/*editTextCourriel.text.toString(),*/
+                                        "123",/*editTextMotDePasse.text.toString(),*/
                                         null,
                                         null,
                                         null,
                                         null)
+            var salut = connexion.toJson()
 
             CONNEXION_URL.httpPost()
             .header("Content-Type" to "application/json")
