@@ -41,7 +41,12 @@ class MainActivity : AppCompatActivity(),
 
         if(item is Exploration)
         {
-
+            Runnable {
+                val transaction = fragmentManager.beginTransaction()
+                transaction.replace(R.id.contentFrame, ExplorationDetailsFragment())
+                transaction.addToBackStack("DetailsExplo")
+                transaction.commit()
+            }.run()
         }
         if(item is Unite)
         {
