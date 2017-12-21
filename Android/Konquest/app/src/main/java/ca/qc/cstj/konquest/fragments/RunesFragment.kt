@@ -14,6 +14,7 @@ import ca.qc.cstj.konquest.helpers.RUNES_URL
 import ca.qc.cstj.konquest.models.Runes
 import com.github.kittinunf.fuel.android.extension.responseJson
 import com.github.kittinunf.fuel.httpGet
+import kotlinx.android.synthetic.main.fragment_runes.*
 
 
 class RunesFragment : Fragment() {
@@ -30,7 +31,7 @@ class RunesFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle): View? {
+                              savedInstanceState: Bundle?): View? {
 
         RUNES_URL.httpGet()
                 .header("Authorization" to authorization)
@@ -39,19 +40,20 @@ class RunesFragment : Fragment() {
                         200 -> {
                             val runes = Runes(result.get())
 
-                            // On prepare les noms :
-                            var title_rune_air = "Air : " + runes.air
-                            var title_rune_darkness = "Darkness : " + runes.darkness
-                            var title_rune_earth = "Earth : " + runes.earth
-                            var title_rune_energy = "Energy : " + runes.energy
-                            var title_rune_fire = "Fire : " + runes.fire
-                            var title_rune_life = "Life : " + runes.life
-                            var title_rune_light = "Light : " + runes.light
-                            var title_rune_logic = "Logic : " + runes.logic
-                            var title_rune_music = "Music : " + runes.music
-                            var title_rune_space = "Space : " + runes.space
-                            var title_rune_toxic = "Toxic : " + runes.toxic
-                            var title_rune_water = "Water : " + runes.water
+                          
+                            TextViewRuneAir.text = runes.air
+                            TextViewRuneDarkness.text = runes.darkness
+                            TextViewRuneEarth.text = runes.earth
+                            TextViewRuneEnergy.text = runes.energy
+                            TextViewRuneFire.text = runes.fire
+                            TextViewRuneLife.text = runes.life
+                            TextViewRuneLight.text = runes.light
+                            TextViewRuneLogic.text = runes.logic
+                            TextViewRuneMusic.text = runes.music
+                            TextViewRuneSpace.text = runes.space
+                            TextViewRuneToxic.text = runes.toxic
+                            TextViewRuneWater.text = runes.water
+
                         }
                         404 -> {
                             //Toast.makeText(this, "Erreur: ressource non trouvée!", Toast.LENGTH_SHORT).show()

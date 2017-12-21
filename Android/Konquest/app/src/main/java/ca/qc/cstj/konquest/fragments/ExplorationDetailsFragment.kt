@@ -26,6 +26,10 @@ import kotlinx.android.synthetic.main.fragment_exploration_details.view.*
 import kotlinx.android.synthetic.main.fragment_unite_details.view.*
 import org.json.JSONObject
 
+/*
+/**
+ * A simple [Fragment] subclass.
+ */
 class ExplorationDetailsFragment : Fragment() {
 
     //les parametres
@@ -104,10 +108,6 @@ class ExplorationDetailsFragment : Fragment() {
                 }401->{
                     // pas le droit le gros
                 } else ->{
-
-                }
-            }
-        }
 
         fin_voyage.setOnClickListener{
 
@@ -191,4 +191,7 @@ class ExplorationDetailsFragment : Fragment() {
     }
 
 
-}
+
+}// Required empty public constructor
+
+*/

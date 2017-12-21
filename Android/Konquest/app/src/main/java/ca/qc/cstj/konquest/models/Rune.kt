@@ -3,7 +3,7 @@ package ca.qc.cstj.konquest.models
 import com.github.kittinunf.fuel.android.core.Json
 import com.google.gson.GsonBuilder
 import com.google.gson.annotations.Expose
-
+/*
 data class Rune(@Expose var air : Json?,
                 @Expose var darkness : Json?,
                 @Expose var earth : Json?,
@@ -22,4 +22,4 @@ data class Rune(@Expose var air : Json?,
 */
     fun toJson() : String =
             GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(this)
-}
+}*/
