@@ -15,17 +15,6 @@ import ca.qc.cstj.konquest.adapters.ExplorationRecyclerViewAdapter
 
 import ca.qc.cstj.konquest.models.Exploration
 
-/**
- * A fragment representing a list of Items.
- *
- *
- * Activities containing this fragment MUST implement the [OnListFragmentInteractionListener]
- * interface.
- */
-/**
- * Mandatory empty constructor for the fragment manager to instantiate the
- * fragment (e.g. upon screen orientation changes).
- */
 class ExplorationListFragment : Fragment() {
 
     // TODO: Customize parameters
@@ -39,7 +28,7 @@ class ExplorationListFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle): View? {
+                              savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_exploration_list, container, false)
 
         // Set the adapter
@@ -52,6 +41,10 @@ class ExplorationListFragment : Fragment() {
             }
             view.adapter = ExplorationRecyclerViewAdapter(explorations, mListener)
         }
+
+
+
+
         return view
     }
 
@@ -70,15 +63,6 @@ class ExplorationListFragment : Fragment() {
         mListener = null
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     *
-     *
-     * See the Android Training lesson [Communicating with Other Fragments](http://developer.android.com/training/basics/fragments/communicating.html) for more information.
-     */
     interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
         fun onListFragmentInteraction(item: Exploration)

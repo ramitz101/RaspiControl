@@ -93,7 +93,7 @@ class MainActivity : AppCompatActivity(),
                         val transaction = fragmentManager.beginTransaction()
                         transaction.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
                         transaction.replace(R.id.contentFrame, AccueilFragment.newInstance(authorization))
-                        transaction.addToBackStack("AccueilNavigation")
+                        //transaction.addToBackStack("AccueilNavigation")
                         transaction.commit()
                     }
                 }

@@ -3,6 +3,7 @@ package ca.qc.cstj.konquest.fragments
 
 import android.os.Bundle
 import android.app.Fragment
+import android.app.FragmentManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -91,7 +92,6 @@ class ExplorationDetailsFragment : Fragment() {
                         404 -> {
                             // le portail existe pas
                         } else ->{
-                        var ee = ""
                     }
                     }
                 }
@@ -110,8 +110,15 @@ class ExplorationDetailsFragment : Fragment() {
         water.text = explorateurRunes.getString("water").toString()
 
 
+        var token = explorateurJson.getString("token")
 
+        // On prepare le token pour envoie.
+        var authorization = "bearer " + token
 
+        view!!.fin_voyage.setOnClickListener {
+
+            allerAccueil(authorization)
+        }
 
 
         view!!.debloquer_unite.setOnClickListener{
@@ -125,11 +132,7 @@ class ExplorationDetailsFragment : Fragment() {
                         exploration.getJSONObject("unit").toString()
 
                 )
-                var explorateurJson = JSONObject(explorateur)
-                var token = explorateurJson.getString("token")
 
-                // On prepare le token pour envoie.
-                var authorization = "bearer " + token
 
 
 
@@ -149,6 +152,8 @@ class ExplorationDetailsFragment : Fragment() {
                 //Toast.makeText(this.context, "Aucune unite à débloquer", Toast.LENGTH_SHORT).show()
             //}
 
+            allerAccueil(authorization)
+
         }
         super.onViewCreated(view, savedInstanceState)
 
@@ -157,6 +162,16 @@ class ExplorationDetailsFragment : Fragment() {
 
 
     }
+
+    override fun onDetach() {
+        super.onDetach()
+    }
+    fun allerAccueil(auth : String) {
+        val transaction  = fragmentManager.beginTransaction()
+        transaction.replace(R.id.contentFrame,AccueilFragment.newInstance(auth))
+        transaction.commit()
+    }
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {

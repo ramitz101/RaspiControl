@@ -57,7 +57,6 @@ class UniteListFragment: Fragment() {
                     200 -> {
                         createUniteList(result.get())
                         view.adapter.notifyDataSetChanged()
-                        Toast.makeText(this.context, "Tout Fonctionne!", Toast.LENGTH_SHORT).show()
                     }
                     404-> {
                         Toast.makeText(this.context, "Erreur: ressource non trouvée!", Toast.LENGTH_SHORT).show()
