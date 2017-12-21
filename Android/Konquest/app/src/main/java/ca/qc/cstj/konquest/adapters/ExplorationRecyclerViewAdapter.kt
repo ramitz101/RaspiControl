@@ -8,29 +8,19 @@ import ca.qc.cstj.konquest.R
 
 import ca.qc.cstj.konquest.fragments.ExplorationListFragment.OnListFragmentInteractionListener
 import ca.qc.cstj.konquest.models.Exploration
+import kotlinx.android.synthetic.main.card_exploration.view.*
 
-
-/**
- * [RecyclerView.Adapter] that can display a [DummyItem] and makes a call to the
- * specified [OnListFragmentInteractionListener].
- * TODO: Replace the implementation with code for your data type.
- */
-class ExplorationRecyclerViewAdapter(private val mValues: List<Exploration>, private val mListener: OnListFragmentInteractionListener?) : RecyclerView.Adapter<ExplorationRecyclerViewAdapter.ViewHolder>() {
+class ExplorationRecyclerViewAdapter(private val mValues: List<Exploration>,
+                                     private val mListener: OnListFragmentInteractionListener?) : RecyclerView.Adapter<ExplorationRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.fragment_exploration, parent, false)
+                .inflate(R.layout.card_exploration, parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.mItem = mValues[position]
-        //holder.mIdView.text = mValues[position].id
-       // holder.mContentView.text = mValues[position].content
-
-       // holder.mView.setOnClickListener {
-            //mListener?.onListFragmentInteraction(holder.mItem)
-        //}
+        holder.bind(mValues[position])
     }
 
     override fun getItemCount(): Int {
@@ -38,17 +28,20 @@ class ExplorationRecyclerViewAdapter(private val mValues: List<Exploration>, pri
     }
 
     inner class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
-       // val mIdView: TextView
-       //val mContentView: TextView
-        var mItem: Exploration? = null
+        var exploration : Exploration? = null
 
-        init {
-            //mIdView = mView.findViewById(R.id.id) as TextView
-            //mContentView = mView.findViewById(R.id.content) as TextView
+        var lblDateExploration = mView.textViewExplorateurDateExploration
+        var lblDepart = mView.textViewExplorateurDepart
+        var lblDestination = mView.textViewExplorateurDestination
+
+
+        fun bind(exploration: Exploration)
+        {
+            this.exploration = exploration
+
+            lblDateExploration.text = exploration.dateExploration
+            lblDepart.text = exploration.depart
+            lblDateExploration.text = exploration.destination
         }
-
-        //override fun toString(): String {
-            //return super.toString() + " '" + mContentView.text + "'"
-        //}
     }
 }

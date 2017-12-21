@@ -29,7 +29,6 @@ class UniteListFragment: Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         authorization = arguments!!.getString(ARG_AUTHORIZATION)
     }
 
@@ -83,7 +82,7 @@ class UniteListFragment: Fragment() {
         // On crée un tableau.
         val tabJson = json.array()
         // On nettoie les anciennes données.
-        //unites.clear()
+        unites.clear()
         // On insert les nouvelles données de units.
         for( i in 0.. (json.array().length() -1 )) {
             unites.add(Unite(Json(tabJson[i].toString())))
@@ -111,11 +110,10 @@ class UniteListFragment: Fragment() {
     }
 
    companion object {
-
-        // TODO: Customize parameter argument names
+       // Les paramètres :
         private val ARG_AUTHORIZATION = "authorization"
 
-        // TODO: Customize parameter initialization
+        // La fonction qui crée une nouvelle instance du fragment.
         fun newInstance(auth:String): UniteListFragment {
             val fragment = UniteListFragment()
             val args = Bundle()
