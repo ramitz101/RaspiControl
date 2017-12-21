@@ -115,7 +115,7 @@ class ExplorationDetailsFragment : Fragment() {
 
 
         view!!.debloquer_unite.setOnClickListener{
-            if (ilYAUneUnite) {
+            //if (ilYAUneUnite) {
 
 
 
@@ -145,9 +145,9 @@ class ExplorationDetailsFragment : Fragment() {
                         }
                     }
                 }
-            }else{
-                Toast.makeText(this.context, "Aucune unite à débloquer", Toast.LENGTH_SHORT).show()
-            }
+            //}else{
+                //Toast.makeText(this.context, "Aucune unite à débloquer", Toast.LENGTH_SHORT).show()
+            //}
 
         }
         super.onViewCreated(view, savedInstanceState)

@@ -190,56 +190,67 @@
             <TextView
                 android:id="@+id/unite_darkness"
                 android:layout_width="match_parent"
+                android:textAlignment="center"
                 android:layout_height="20dp"
                 />
             <TextView
                 android:id="@+id/unite_earth"
                 android:layout_width="match_parent"
+                android:textAlignment="center"
                 android:layout_height="20dp"
                 />
             <TextView
                 android:id="@+id/unite_energy"
                 android:layout_width="match_parent"
+                android:textAlignment="center"
                 android:layout_height="20dp"
                 />
             <TextView
                 android:id="@+id/unite_fire"
                 android:layout_width="match_parent"
+                android:textAlignment="center"
                 android:layout_height="20dp"
                 />
             <TextView
                 android:id="@+id/unite_life"
                 android:layout_width="match_parent"
+                android:textAlignment="center"
                 android:layout_height="20dp"
                 />
             <TextView
                 android:id="@+id/unite_light"
                 android:layout_width="match_parent"
+                android:textAlignment="center"
                 android:layout_height="20dp"
                 />
             <TextView
                 android:id="@+id/unite_logic"
                 android:layout_width="match_parent"
+                android:textAlignment="center"
                 android:layout_height="20dp"
                 />
             <TextView
                 android:id="@+id/unite_music"
                 android:layout_width="match_parent"
+                android:textAlignment="center"
                 android:layout_height="20dp"
                 />
             <TextView
                 android:id="@+id/unite_space"
                 android:layout_width="match_parent"
+                android:textAlignment="center"
                 android:layout_height="20dp"
                 />
             <TextView
                 android:id="@+id/unite_toxic"
                 android:layout_width="match_parent"
+                android:textAlignment="center"
                 android:layout_height="20dp"
                 />
             <TextView
                 android:id="@+id/unite_water"
                 android:layout_width="match_parent"
+                android:textAlignment="center"
                 android:layout_height="20dp"
                 />
         </LinearLayout>
@@ -254,61 +265,74 @@
             <TextView
                 android:id="@+id/result_air"
                 android:layout_width="match_parent"
+                android:textAlignment="center"
                 android:layout_height="20dp"
                 />
             <TextView
                 android:id="@+id/result_darkness"
                 android:layout_width="match_parent"
+                android:textAlignment="center"
                 android:layout_height="20dp"
                 />
             <TextView
                 android:id="@+id/result_earth"
                 android:layout_width="match_parent"
+                android:textAlignment="center"
                 android:layout_height="20dp"
                 />
             <TextView
                 android:id="@+id/result_energy"
                 android:layout_width="match_parent"
+                android:textAlignment="center"
                 android:layout_height="20dp"
                 />
             <TextView
                 android:id="@+id/result_fire"
                 android:layout_width="match_parent"
+                android:textAlignment="center"
                 android:layout_height="20dp"
                 />
             <TextView
                 android:id="@+id/result_life"
                 android:layout_width="match_parent"
+                android:textAlignment="center"
                 android:layout_height="20dp"
                 />
             <TextView
                 android:id="@+id/result_light"
                 android:layout_width="match_parent"
+                android:textAlignment="center"
                 android:layout_height="20dp"
                 />
             <TextView
                 android:id="@+id/result_logic"
                 android:layout_width="match_parent"
+                android:textAlignment="center"
                 android:layout_height="20dp"
                 />
             <TextView
                 android:id="@+id/result_music"
                 android:layout_width="match_parent"
+                android:textAlignment="center"
                 android:layout_height="20dp"
                 />
             <TextView
                 android:id="@+id/result_space"
                 android:layout_width="match_parent"
+                android:textAlignment="center"
                 android:layout_height="20dp"
                 />
             <TextView
                 android:id="@+id/result_toxic"
                 android:layout_width="match_parent"
+                android:textAlignment="center"
+
                 android:layout_height="20dp"
                 />
             <TextView
                 android:id="@+id/result_water"
                 android:layout_width="match_parent"
+                android:textAlignment="center"
                 android:layout_height="20dp"
                 />
         </LinearLayout>
