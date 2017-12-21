@@ -1,0 +1,17 @@
+#imgAndromia{
+    width:100%;
+    height:80%;
+  }
+
+  #infoUser{
+      margin-top: 100%;
+  }
+  
+  #unitsImg{
+      
+    height:30%;
+  }
+
+  #loginErrorMsg{
+    color:red;
+  }

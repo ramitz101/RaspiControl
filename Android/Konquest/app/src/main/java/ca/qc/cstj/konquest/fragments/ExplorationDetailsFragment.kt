@@ -78,6 +78,7 @@ class ExplorationDetailsFragment : Fragment() {
                                 Picasso.with(image_unite.context).load(explorationImage).fit().centerInside().into(image_unite)
                             }else {
                                 ilYAUneUnite = false // boutton non disponible
+                                Toast.makeText(this.context, "Aucune unite à débloquer", Toast.LENGTH_SHORT).show()
 
                             }
 
@@ -113,7 +114,7 @@ class ExplorationDetailsFragment : Fragment() {
 
 
 
-        view!!.fin_voyage.setOnClickListener{
+        view!!.debloquer_unite.setOnClickListener{
             if (ilYAUneUnite) {
 
 
