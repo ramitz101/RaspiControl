@@ -23,3 +23,10 @@ data class Rune(@Expose var air : Json?,
     fun toJson() : String =
             GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(this)
 }*/
+
+abstract class Item {
+
+
+    abstract fun getUrl():String
+
+}
