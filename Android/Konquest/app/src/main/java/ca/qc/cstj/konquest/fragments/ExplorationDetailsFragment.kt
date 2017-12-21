@@ -40,6 +40,8 @@ class ExplorationDetailsFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
+
         portalKey =  arguments!!.getString(ARG_PORTALKEY)
         explorateur = arguments!!.getString(ARG_EXPLORATEUR)
     }
@@ -58,13 +60,29 @@ class ExplorationDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
 
-
+        debloquer_unite.isClickable = true
         // l'explorateur en json et ses objet
         var explorateurJson = JSONObject(explorateur)
+        var explorateurUser = explorateurJson.getJSONObject("user")
+        var explorateurRunes = explorateurUser.getJSONObject("runes")
+
         var token = explorateurJson.getString("token")
         // On prepare le token pour envoie.
         var authorization = "bearer " + token
 
+
+        air.text = explorateurRunes.getString("air")
+        darkness.text = explorateurRunes.getString("darkness").toString()
+        earth.text = explorateurRunes.getString("earth").toString()
+        energy.text = explorateurRunes.getString("energy").toString()
+        fire.text = explorateurRunes.getString("fire").toString()
+        life.text = explorateurRunes.getString("life").toString()
+        light.text = explorateurRunes.getString("light").toString()
+        logic.text = explorateurRunes.getString("logic").toString()
+        music.text = explorateurRunes.getString("music").toString()
+        space.text = explorateurRunes.getString("space").toString()
+        toxic.text = explorateurRunes.getString("toxic").toString()
+        water.text = explorateurRunes.getString("water").toString()
 
 
 
@@ -96,9 +114,10 @@ class ExplorationDetailsFragment : Fragment() {
 
                         Picasso.with(image_unite.context).load(explorationImage).fit().centerInside().into(image_unite)
                     }else {
+                        // pas de unit a l'horizon
                         ilYAUneUnite = false // boutton non disponible
                         Toast.makeText(this.context, "Aucune unite à débloquer", Toast.LENGTH_SHORT).show()
-
+                        debloquer_unite.isClickable = false
                     }
 
                 }
@@ -112,7 +131,12 @@ class ExplorationDetailsFragment : Fragment() {
             }
         }
 
+
+
+
         fin_voyage.setOnClickListener{
+
+
 
             var explorationRunes = exploration.getJSONObject("runes")
             var explorationRunesString = explorationRunes.toString()
@@ -121,6 +145,7 @@ class ExplorationDetailsFragment : Fragment() {
             // construction d'une exploration
             var explorationConstruite = Exploration(exploration.getString("dateExploration"),
                     exploration.getString("destination"),
+                    explorateurUser.getString("location"),
                     explorationRunesString,
                     emptyUnit
 
@@ -145,6 +170,45 @@ class ExplorationDetailsFragment : Fragment() {
 
             allerAccueil(authorization)
         }
+
+        debloquer_unite.setOnClickListener{
+
+            var explorationRunes = exploration.getJSONObject("runes")
+            var explorationRunesString = explorationRunes.toString()
+
+            var explorateurUser = explorateurJson.getJSONObject("user")
+
+
+
+
+            var explorationConstruite = Exploration(exploration.getString("dateExploration"),
+                    exploration.getString("destination"),
+                    explorateurUser.getString("location"),
+                    explorationRunesString,
+                    exploration.getString("unit")
+
+            )
+            var explorateurEnJson = explorationConstruite.toJson()
+
+            EXPLORATION_URL.httpPost()
+                    .header("Authorization" to authorization,"Content-Type" to "application/json" )
+                    .body(explorationConstruite.toJson()).responseJson { request, response, result ->
+                when (response.statusCode) {
+                    201 -> {
+                        //Toast.makeText(this.context, "Exploration envoyé", Toast.LENGTH_SHORT).show()
+                    }
+                    else -> {
+                        //Toast.makeText(this.context, response.statusCode, Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+            allerAccueil(authorization)
+
+
+
+        }
+
+
 
 
 

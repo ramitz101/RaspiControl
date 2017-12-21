@@ -90,7 +90,7 @@ class MainActivity : AppCompatActivity(),
                         transaction.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
                         transaction.replace(R.id.contentFrame, AccueilFragment.newInstance(authorization))
                         transaction.commit()
-                    }
+                    }.run()
                 }
 
                 R.id.nav_lstUnites -> {
@@ -98,7 +98,6 @@ class MainActivity : AppCompatActivity(),
                         val transaction = fragmentManager.beginTransaction()
                         transaction.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
                         transaction.replace(R.id.contentFrame, UniteListFragment.newInstance(authorization))
-                        transaction.addToBackStack("ListeUnites")
                         transaction.commit()
                     }.run()
                 }
@@ -163,8 +162,8 @@ class MainActivity : AppCompatActivity(),
             }
             R.id.action_scanner-> {
 
-                postPortalKey("6F11EF96-B3A5-414D-909E-0F8EB9A2B045")
-                /*IntentIntegrator(this).initiateScan() // `this` is the current Activity*/
+
+                IntentIntegrator(this).initiateScan() // `this` is the current Activity
             }
             else -> return super.onOptionsItemSelected(item)
         }
@@ -177,7 +176,6 @@ class MainActivity : AppCompatActivity(),
         Runnable {
             val transaction = fragmentManager.beginTransaction()
             transaction.replace(R.id.contentFrame, UniteDetailsFragment(unite!!.href))
-            //transaction.addToBackStack("DetailsLivre")
             transaction.commit()
         }.run()
     }
@@ -190,7 +188,7 @@ class MainActivity : AppCompatActivity(),
             } else {
                 Runnable {
                     val transaction = fragmentManager.beginTransaction()
-                    //transaction.replace(R.id.contentFrame/*, ExplorationDetailsFragment.newInstance(explorateur, result.contents)*/)
+                    transaction.replace(R.id.contentFrame, ExplorationDetailsFragment.newInstance(explorateur, result.contents))
                     transaction.commit()
                 }.run()
             }
