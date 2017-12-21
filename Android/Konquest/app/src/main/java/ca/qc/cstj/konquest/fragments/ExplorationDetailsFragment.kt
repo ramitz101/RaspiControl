@@ -103,45 +103,44 @@ class ExplorationDetailsFragment : Fragment() {
                     }
 
                 }
-        //        404 -> {
-         //           // le portail existe pas
-         //       } else ->{
-         //       var ee = ""
-         //       }
-         //   }
-       // }
+                404 -> {
+                    // le portail existe pas
+                }401->{
+                    // pas le droit le gros
+                } else ->{
 
         fin_voyage.setOnClickListener{
+
+            var explorationRunes = exploration.getJSONObject("runes")
+            var explorationRunesString = explorationRunes.toString()
 
             var emptyUnit = "{}"
             // construction d'une exploration
             var explorationConstruite = Exploration(exploration.getString("dateExploration"),
                     exploration.getString("destination"),
-                    exploration.getJSONObject("runes").toString(),
+                    explorationRunesString,
                     emptyUnit
 
             )
-            var explorateurString = explorationConstruite.toString()
+            var explorateurEnJson = explorationConstruite.toJson()
 
 
 
 
             EXPLORATION_URL.httpPost()
                     .header("Authorization" to authorization,"Content-Type" to "application/json" )
-                    .body(explorateurString).responseJson { request, response, result ->
+                    .body(explorationConstruite.toJson()).responseJson { request, response, result ->
                 when (response.statusCode) {
                     201 -> {
-                        Toast.makeText(this.context, "Exploration envoyé", Toast.LENGTH_SHORT).show()
+                        //Toast.makeText(this.context, "Exploration envoyé", Toast.LENGTH_SHORT).show()
                     }
                     else -> {
                         //Toast.makeText(this.context, response.statusCode, Toast.LENGTH_SHORT).show()
                     }
                 }
             }
-            //}else{
-            //Toast.makeText(this.context, "Aucune unite à débloquer", Toast.LENGTH_SHORT).show()
-            //}
 
+            allerAccueil(authorization)
         }
         if (ilYAUneUnite){
 
@@ -152,6 +151,11 @@ class ExplorationDetailsFragment : Fragment() {
 
     }
 
+    fun allerAccueil(auth : String) {
+        val transaction  = fragmentManager.beginTransaction()
+        transaction.replace(R.id.contentFrame,AccueilFragment.newInstance(auth))
+        transaction.commit()
+    }
 
     fun BindUniteRunes(explorationRunes: JSONObject){
         unite_air.text = explorationRunes.getString("air")
