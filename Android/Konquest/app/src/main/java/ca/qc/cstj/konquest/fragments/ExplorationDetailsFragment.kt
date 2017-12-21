@@ -4,11 +4,13 @@ package ca.qc.cstj.konquest.fragments
 import android.os.Bundle
 import android.app.Fragment
 import android.app.FragmentManager
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import ca.qc.cstj.konquest.Activity.MainActivity
 
 import ca.qc.cstj.konquest.R
 import ca.qc.cstj.konquest.helpers.EXPLORATION_URL
@@ -21,6 +23,7 @@ import com.github.kittinunf.fuel.httpPost
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_exploration_details.*
 import kotlinx.android.synthetic.main.fragment_exploration_details.view.*
+import kotlinx.android.synthetic.main.fragment_unite_details.view.*
 import org.json.JSONObject
 
 
@@ -59,34 +62,41 @@ class ExplorationDetailsFragment : Fragment() {
         val URL = PORTALKEY_URL + portalKey
 
         URL.httpGet()
-                .responseJson{ _, response, result ->
-                    var test = response
-                    when (response.statusCode) {
-                        200 -> {
-                            // le protail existe
-                            var explorationString = result.get().content
-                            exploration= JSONObject(explorationString)
+        .responseJson{ _, response, result ->
+            var test = response
+            when (response.statusCode) {
+                200 -> {
+                    // le protail existe
+                    var explorationString = result.get().content
+                    exploration= JSONObject(explorationString)
 
 
-                            // true si il y a une unite
-                            if ( exploration.getString("unit") != "{}")
-                            {
-                                var explorationUnite = exploration.getJSONObject("unit")
-                                var explorationRunesUnite = explorationUnite.getJSONObject("kernel")
-                                var explorationImage = explorationUnite.getString("imageURL")
-                                BindUniteRunes(explorationRunesUnite)
+                    // true si il y a une unite
+                    if ( exploration.getString("unit") != "{}")
+                    {
+                        var explorationUnite = exploration.getJSONObject("unit")
+                        var explorationRunesUnite = explorationUnite.getJSONObject("kernel")
+                        var explorationImage = explorationUnite.getString("imageURL")
 
-                                Picasso.with(image_unite.context).load(explorationImage).fit().centerInside().into(image_unite)
-                            }else {
-                                ilYAUneUnite = false // boutton non disponible
-                                Toast.makeText(this.context, "Aucune unite à débloquer", Toast.LENGTH_SHORT).show()
+                        unit_life.text = explorationUnite.getString("life")
+                        unit_name.text = explorationUnite.getString("name")
+                        unit_speed.text = explorationUnite.getString("speed")
+                        unit_affinity.text = explorationUnite.getString("affinity")
 
-                            }
 
-                            // 1. regarder si il y a une unite
-                            // 2. est ce que je peux la débloquer. si oui offrir l'option de la débloquer et terminer le voyage. si non, aucune option
-                            // 3.ajouter les runes ou les soustraire. et la unite si il la débloquée
-                            // 4. créer un exploration dans la liste d'exploration
+                        BindUniteRunes(explorationRunesUnite)
+
+                        Picasso.with(image_unite.context).load(explorationImage).fit().centerInside().into(image_unite)
+                    }else {
+                        ilYAUneUnite = false // boutton non disponible
+                        Toast.makeText(this.context, "Aucune unite à débloquer", Toast.LENGTH_SHORT).show()
+
+                    }
+
+                    // 1. regarder si il y a une unite
+                    // 2. est ce que je peux la débloquer. si oui offrir l'option de la débloquer et terminer le voyage. si non, aucune option
+                    // 3.ajouter les runes ou les soustraire. et la unite si il la débloquée
+                    // 4. créer un exploration dans la liste d'exploration
 
                         }
                         404 -> {
@@ -95,6 +105,14 @@ class ExplorationDetailsFragment : Fragment() {
                     }
                     }
                 }
+                }
+                404 -> {
+                    // le portail existe pas
+                } else ->{
+                var ee = ""
+                }
+            }
+        }
 
         air.text = explorateurRunes.getString("air")
         darkness.text = explorateurRunes.getString("darkness").toString()
@@ -120,6 +138,11 @@ class ExplorationDetailsFragment : Fragment() {
             allerAccueil(authorization)
         }
 
+                var token = explorateurJson.getString("token")
+
+                // On prepare le token pour envoie.
+                var authorization = "bearer " + token
+
 
         view!!.debloquer_unite.setOnClickListener{
             //if (ilYAUneUnite) {
@@ -132,19 +155,20 @@ class ExplorationDetailsFragment : Fragment() {
                         exploration.getJSONObject("unit").toString()
 
                 )
+                var explorateurString = explorationConstruite.toString()
 
 
 
 
                 EXPLORATION_URL.httpPost()
-                .header("Authorization" to authorization)
-                .body(explorationConstruite.toJson()).responseJson() { _, response, result ->
+                .header("Authorization" to authorization,"Content-Type" to "application/json" )
+                .body(explorateurString).responseJson { request, response, result ->
                     when (response.statusCode) {
                         201 -> {
                             Toast.makeText(this.context, "Exploration envoyé", Toast.LENGTH_SHORT).show()
                         }
                         else -> {
-                            Toast.makeText(this.context, "Erreur: ressource non trouvée!", Toast.LENGTH_SHORT).show()
+                            //Toast.makeText(this.context, response.statusCode, Toast.LENGTH_SHORT).show()
                         }
                     }
                 }

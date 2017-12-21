@@ -41,11 +41,11 @@ class UniteRecyclerViewAdapter(private val mValues: List<Unite>,
         var unite: Unite? = null
 
         fun bind(unite: Unite){
+            this.unite = unite
 
             // Image
             Picasso.with(imgUnite.context).load(unite.imageURL).fit().centerInside().into(imgUnite)
             lblName.text = unite.name
-            this.unite = unite
         }
     }
 }
