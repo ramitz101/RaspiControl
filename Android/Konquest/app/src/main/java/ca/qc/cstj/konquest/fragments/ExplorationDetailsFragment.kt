@@ -26,7 +26,7 @@ import kotlinx.android.synthetic.main.fragment_exploration_details.view.*
 import kotlinx.android.synthetic.main.fragment_unite_details.view.*
 import org.json.JSONObject
 
-
+/*
 /**
  * A simple [Fragment] subclass.
  */
@@ -106,13 +106,13 @@ class ExplorationDetailsFragment : Fragment() {
                     }
                 }
                 }
-                404 -> {
-                    // le portail existe pas
-                } else ->{
-                var ee = ""
-                }
-            }
-        }
+        //        404 -> {
+         //           // le portail existe pas
+         //       } else ->{
+         //       var ee = ""
+         //       }
+         //   }
+       // }
 
         air.text = explorateurRunes.getString("air")
         darkness.text = explorateurRunes.getString("darkness").toString()
@@ -245,3 +245,5 @@ class ExplorationDetailsFragment : Fragment() {
 
 
 }// Required empty public constructor
+
+*/
