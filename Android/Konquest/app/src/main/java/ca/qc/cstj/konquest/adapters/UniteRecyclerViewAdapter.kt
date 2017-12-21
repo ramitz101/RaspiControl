@@ -6,13 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import ca.qc.cstj.konquest.R
 
-import ca.qc.cstj.konquest.fragments.UniteListFragment.OnListFragmentInteractionListener
+//import ca.qc.cstj.konquest.fragments.UniteListFragment.OnListFragmentInteractionListener
 import ca.qc.cstj.konquest.models.Unite
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.card_unite.view.*
 
 class UniteRecyclerViewAdapter(private val mValues: List<Unite>,
-                               private val mListener: OnListFragmentInteractionListener?) : RecyclerView.Adapter<UniteRecyclerViewAdapter.ViewHolder>() {
+                               private val mListener: OnListFragmentInformationUnique?) : RecyclerView.Adapter<UniteRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)

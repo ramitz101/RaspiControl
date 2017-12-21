@@ -14,7 +14,12 @@ data class Explorateur (@Expose var courriel : String?,
                    @Expose var location : String?,
                    var runes : String?,
                    var hrefExplorateur : String?
-        ) {
+        )   {
+
+
+
+
+
 
     constructor(json: Json) : this(json.obj().getString("courriel"),
                                    json.obj().getString("pseudonyme"),
