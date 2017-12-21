@@ -9,8 +9,11 @@ val CONNEXION_URL = BASE_URL + "connexion"
 val ENREGISTREMENT_URL = BASE_URL + "inscription"
 val EXPLORATEUR_URL = BASE_URL + "explorateur"
 val PORTALKEY_URL = "http://api.andromia.science/portals/"
+val EXPLORATION_URL = BASE_URL + "explorations/"
 
 // Token :
+val EXPLORATEUR = "Explorateur"
+val EXPLORATEUR_INFORMATION = "Explorateur Information"
 val TOKEN = "Token"
 val TOKEN_INFORMATION = "Token Information"
 

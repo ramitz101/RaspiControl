@@ -11,6 +11,7 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.LinearLayout
 import android.widget.Toast
 import ca.qc.cstj.konquest.R
@@ -21,19 +22,24 @@ import ca.qc.cstj.konquest.fragments.UniteListFragment
 import ca.qc.cstj.konquest.helpers.*
 import ca.qc.cstj.konquest.models.Runes
 import ca.qc.cstj.konquest.models.Explorateur
+import ca.qc.cstj.konquest.models.Exploration
 import ca.qc.cstj.konquest.models.Unite
 import com.github.kittinunf.fuel.android.extension.responseJson
 import com.github.kittinunf.fuel.httpGet
 import com.google.zxing.integration.android.IntentIntegrator
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+import org.json.JSONObject
 
 
 class MainActivity : AppCompatActivity(),
         UniteListFragment.OnListFragmentInteractionListener,
-        AccueilFragment.OnFragmentInteractionListener
+        AccueilFragment.OnFragmentInteractionListener, ExplorationDetailsFragment.OnClickListener
 {
     override fun onFragmentInteraction(uri: Uri) {
+        // Fragment Accueil.
+    }
+    override fun OnClickListener(item: Exploration) {
         // Fragment Accueil.
     }
 
@@ -48,11 +54,13 @@ class MainActivity : AppCompatActivity(),
 
 
     var authorization : String = ""
+    var explorateur : String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
 
         super.onCreate(savedInstanceState)
+        //savedInstanceState.
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
@@ -63,9 +71,13 @@ class MainActivity : AppCompatActivity(),
 
         afficherRunes()
 
-        // On obtient le token.
-        val preferences : SharedPreferences? = this.getSharedPreferences(TOKEN, 0)
-        var token = preferences?.getString(TOKEN,null)
+        // On obtient l'explorateur.
+        val preferences : SharedPreferences = this.getSharedPreferences(EXPLORATEUR, 0)
+        explorateur = preferences.getString(EXPLORATEUR,null)
+        //preferences?.getString()
+        //var token = preferences?.getString(TOKEN,null)
+        var explorateurJson = JSONObject(explorateur)
+        var token = explorateurJson.getString("token")
 
         // On prepare le token pour envoie.
         authorization = "bearer " + token
@@ -163,7 +175,7 @@ class MainActivity : AppCompatActivity(),
             } else {
                 Runnable {
                     val transaction = fragmentManager.beginTransaction()
-                    transaction.replace(R.id.contentFrame, ExplorationDetailsFragment.newInstance(authorization, result.contents))
+                    transaction.replace(R.id.contentFrame, ExplorationDetailsFragment.newInstance(explorateur, result.contents))
                     transaction.commit()
                 }.run()
             }
@@ -254,7 +266,7 @@ class MainActivity : AppCompatActivity(),
 
         Runnable {
             val transaction = fragmentManager.beginTransaction()
-            transaction.replace(R.id.contentFrame, ExplorationDetailsFragment.newInstance(authorization, key))
+            transaction.replace(R.id.contentFrame, ExplorationDetailsFragment.newInstance(explorateur, key))
             transaction.commit()
         }.run()
 

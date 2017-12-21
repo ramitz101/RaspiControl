@@ -29,7 +29,7 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:text="résultat si achat"
+            android:text="runes après achat"
             android:gravity="center"/>
 
     </LinearLayout>
@@ -313,13 +313,14 @@
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="280dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         >
 
         <ImageView
+            android:id="@+id/image_unite"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="200dp" />
