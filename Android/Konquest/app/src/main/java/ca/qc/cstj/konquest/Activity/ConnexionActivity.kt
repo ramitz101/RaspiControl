@@ -44,8 +44,8 @@ class ConnexionActivity : AppCompatActivity() {
             var connexion = Explorateur(null,
                                         null,
                                         null,
-                                        editTextCourriel.text.toString(),
-                                        editTextMotDePasse.text.toString(),
+                                        "test@test.com",/*editTextCourriel.text.toString(),*/
+                                        "123",/*editTextMotDePasse.text.toString(),*/
                                         null,
                                         null,
                                         null,

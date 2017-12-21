@@ -25,6 +25,7 @@ data class Exploration (@Expose var dateExploration : String?,
                                         json.obj().getString("unit"),
             json.obj().getString("href")
     )
+
     fun toJson() : String =
             GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(this)
 }

@@ -13,6 +13,7 @@ import android.widget.Toast
 
 import ca.qc.cstj.konquest.R
 import ca.qc.cstj.konquest.adapters.ExplorationRecyclerViewAdapter
+import ca.qc.cstj.konquest.adapters.OnListFragmentInformationUnique
 import ca.qc.cstj.konquest.helpers.EXPLORATION_URL
 
 import ca.qc.cstj.konquest.models.Exploration
@@ -25,7 +26,7 @@ class ExplorationListFragment : Fragment() {
     // Les paramètres du fragment.
     private val mColumnCount = 1
     private var explorations = mutableListOf<Exploration>()
-    private var mListener: OnListFragmentInteractionListener? = null
+    private var mListener: OnListFragmentInformationUnique? = null
     private var authorization = ""
 
     // On crée le fragment et ont initialises ses paramètres
@@ -95,7 +96,7 @@ class ExplorationListFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (context is OnListFragmentInteractionListener) {
+        if (context is OnListFragmentInformationUnique) {
             mListener = context
         } else {
             throw RuntimeException(context.toString() + " must implement OnListFragmentInteractionListener")
@@ -107,10 +108,10 @@ class ExplorationListFragment : Fragment() {
         mListener = null
     }
 
-    interface OnListFragmentInteractionListener {
+   // interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        fun onListFragmentInteraction(item: Exploration)
-    }
+   //     fun onListFragmentInteraction(item: Exploration)
+   // }
 
     companion object {
         // Les paramètres :

@@ -6,12 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import ca.qc.cstj.konquest.R
 
-import ca.qc.cstj.konquest.fragments.ExplorationListFragment.OnListFragmentInteractionListener
+//import ca.qc.cstj.konquest.fragments.ExplorationListFragment.OnListFragmentInteractionListener
 import ca.qc.cstj.konquest.models.Exploration
 import kotlinx.android.synthetic.main.card_exploration.view.*
 
 class ExplorationRecyclerViewAdapter(private val mValues: List<Exploration>,
-                                     private val mListener: OnListFragmentInteractionListener?) : RecyclerView.Adapter<ExplorationRecyclerViewAdapter.ViewHolder>() {
+                                     private val mListener: OnListFragmentInformationUnique?) : RecyclerView.Adapter<ExplorationRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
