@@ -1,0 +1,31 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ca.qc.cstj.konquest.fragments.MapFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        android:id="@+id/LinearLayoutMap"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/buttonMapQuitter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Retour Accueil" />
+
+        <ImageView
+            android:id="@+id/MapAndromia"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/mapandromia"
+            android:src="@drawable/andromia" />
+    </LinearLayout>
+
+
+</FrameLayout>
