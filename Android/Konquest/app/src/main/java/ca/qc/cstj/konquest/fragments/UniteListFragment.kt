@@ -84,7 +84,7 @@ class UniteListFragment: Fragment() {
         // On crée un tableau.
         val tabJson = json.array()
         // On nettoie les anciennes données.
-        unites.clear()
+        //unites.clear()
         // On insert les nouvelles données de units.
         for( i in 0.. (json.array().length() -1 )) {
             unites.add(Unite(Json(tabJson[i].toString())))

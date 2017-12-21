@@ -2,7 +2,7 @@
 <android.support.v7.widget.CardView
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="match_parent"
+    android:layout_height="100dp"
     android:layout_width="match_parent"
     android:layout_margin="2dp"
     card_view:cardCornerRadius="2dp"
@@ -18,7 +18,7 @@
         <ImageView
             android:id="@+id/imgUnite"
             android:layout_width="140dp"
-            android:layout_height="100dp"
+            android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:contentDescription="Image de Unit"/>
 
