@@ -15,7 +15,6 @@ val EXPLORATION_URL = BASE_URL + "explorations/"
 val EXPLORATEUR = "Explorateur"
 val EXPLORATEUR_INFORMATION = "Explorateur Information"
 val TOKEN = "Token"
-val TOKEN_INFORMATION = "Token Information"
 
 /*
 * Référence Token :

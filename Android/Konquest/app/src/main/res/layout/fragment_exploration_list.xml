@@ -10,4 +10,4 @@
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
     tools:context="ca.qc.cstj.konquest.fragments.ExplorationListFragment"
-    tools:listitem="@layout/fragment_exploration" />
+    tools:listitem="@layout/card_exploration" />

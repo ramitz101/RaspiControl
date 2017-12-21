@@ -1,25 +1,20 @@
 package ca.qc.cstj.konquest.Activity
 
-import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
-import android.os.Handler
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import android.widget.LinearLayout
 import android.widget.Toast
 import ca.qc.cstj.konquest.R
 import ca.qc.cstj.konquest.fragments.*
-//import ca.qc.cstj.konquest.fragments.ExplorationDetailsFragment
+import ca.qc.cstj.konquest.fragments.*
 import ca.qc.cstj.konquest.helpers.*
 import ca.qc.cstj.konquest.models.Runes
-import ca.qc.cstj.konquest.models.Explorateur
 import ca.qc.cstj.konquest.models.Exploration
 import ca.qc.cstj.konquest.models.Unite
 import com.github.kittinunf.fuel.android.extension.responseJson
@@ -33,8 +28,13 @@ import org.json.JSONObject
 class MainActivity : AppCompatActivity(),
         UniteListFragment.OnListFragmentInteractionListener,
         AccueilFragment.OnFragmentInteractionListener,
+        ExplorationListFragment.OnListFragmentInteractionListener,
         RunesFragment.OnFragmentInteractionListener
 {
+    override fun onListFragmentInteraction(item: Exploration) {
+        // Fragment Exploration.
+    }
+
     override fun onFragmentInteraction(uri: Uri) {
         // Fragment Accueil.
     }
@@ -98,9 +98,21 @@ class MainActivity : AppCompatActivity(),
                         val transaction = fragmentManager.beginTransaction()
                         transaction.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
                         transaction.replace(R.id.contentFrame, UniteListFragment.newInstance(authorization))
+                        transaction.addToBackStack("ListeUnites")
                         transaction.commit()
                     }.run()
                 }
+
+                R.id.nav_lstExplorations -> {
+                    Runnable {
+                        val transaction = fragmentManager.beginTransaction()
+                        transaction.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
+                        transaction.replace(R.id.contentFrame, ExplorationListFragment.newInstance(authorization))
+                        transaction.addToBackStack("ListeExploration")
+                        transaction.commit()
+                    }.run()
+                }
+
 
                 R.id.nav_Runes -> {
                     Runnable {
@@ -189,12 +201,6 @@ class MainActivity : AppCompatActivity(),
 
     fun deconnexion() {
 
-        // On indique que le token n'est pas bon.
-        val preferences_tokenInformation : SharedPreferences? = this.getSharedPreferences(ca.qc.cstj.konquest.helpers.TOKEN_INFORMATION, 0)
-        var editor_tokenInformation : SharedPreferences.Editor? = preferences_tokenInformation?.edit()
-        editor_tokenInformation?.putBoolean(TOKEN_INFORMATION,false)
-        editor_tokenInformation?.commit()
-
         // On supprime le token.
         val preferences_token : SharedPreferences? = this.getSharedPreferences(TOKEN, 0)
         var editor_token : SharedPreferences.Editor? = preferences_token?.edit()
@@ -272,7 +278,6 @@ class MainActivity : AppCompatActivity(),
             transaction.replace(R.id.contentFrame, ExplorationDetailsFragment.newInstance(explorateur, key))
             transaction.commit()
         }.run()
-
 
     }
 }

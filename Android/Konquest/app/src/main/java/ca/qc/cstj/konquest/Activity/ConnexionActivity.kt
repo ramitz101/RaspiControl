@@ -22,15 +22,10 @@ class ConnexionActivity : AppCompatActivity() {
 
         // On obtient le token.
         val preferences_token : SharedPreferences? = this.getSharedPreferences(TOKEN, 0)
-        var token = preferences_token?.getString(TOKEN,null)
-
-        // On obtient si le token est bon.
-        val preferences_token_information : SharedPreferences? = this.getSharedPreferences(TOKEN_INFORMATION, 0)
-        var token_information = preferences_token_information?.getBoolean(TOKEN_INFORMATION,false)
-
+        var token = preferences_token?.getString(TOKEN,"")
 
         // Si le token n'égale pas rien, on connecte.
-        if(token != "" && token_information == true)
+        if(token != "")
         {
             val intent = Intent(this@ConnexionActivity,MainActivity::class.java)
             startActivity(intent)
@@ -49,13 +44,12 @@ class ConnexionActivity : AppCompatActivity() {
             var connexion = Explorateur(null,
                                         null,
                                         null,
-                                        "test@test.com",/*editTextCourriel.text.toString(),*/
-                                        "123",/*editTextMotDePasse.text.toString(),*/
+                                        editTextCourriel.text.toString(),
+                                        editTextMotDePasse.text.toString(),
                                         null,
                                         null,
                                         null,
                                         null)
-            var salut = connexion.toJson()
 
             CONNEXION_URL.httpPost()
             .header("Content-Type" to "application/json")
