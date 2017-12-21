@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
+import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
@@ -11,11 +12,17 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import ca.qc.cstj.konquest.R
+import ca.qc.cstj.konquest.adapters.OnListFragmentInformationUnique
+import ca.qc.cstj.konquest.fragments.AccueilFragment
+import ca.qc.cstj.konquest.fragments.RunesFragment
+import ca.qc.cstj.konquest.fragments.UniteDetailsFragment
+import ca.qc.cstj.konquest.fragments.UniteListFragment
 import ca.qc.cstj.konquest.fragments.*
 import ca.qc.cstj.konquest.fragments.*
 import ca.qc.cstj.konquest.helpers.*
 import ca.qc.cstj.konquest.models.Runes
 import ca.qc.cstj.konquest.models.Exploration
+import ca.qc.cstj.konquest.models.Item
 import ca.qc.cstj.konquest.models.Unite
 import com.github.kittinunf.fuel.android.extension.responseJson
 import com.github.kittinunf.fuel.httpGet
@@ -26,14 +33,31 @@ import org.json.JSONObject
 
 
 class MainActivity : AppCompatActivity(),
-        UniteListFragment.OnListFragmentInteractionListener,
+        OnListFragmentInformationUnique,
         AccueilFragment.OnFragmentInteractionListener,
-        ExplorationListFragment.OnListFragmentInteractionListener,
         RunesFragment.OnFragmentInteractionListener
 {
-    override fun onListFragmentInteraction(item: Exploration) {
-        // Fragment Exploration.
+    override fun onListFragmentInteraction(item: Item?) {
+
+        if(item is Exploration)
+        {
+
+        }
+        if(item is Unite)
+        {
+            //nav_left_view.setNavigationItemSelectedListener(this)
+            Runnable {
+                val transaction = fragmentManager.beginTransaction()
+                transaction.replace(R.id.contentFrame, UniteDetailsFragment(item.href,authorization))
+                transaction.addToBackStack("DetailsUnit")
+                transaction.commit()
+            }.run()
+        }
+
+
     }
+
+
 
     override fun onFragmentInteraction(uri: Uri) {
         // Fragment Accueil.
@@ -171,15 +195,14 @@ class MainActivity : AppCompatActivity(),
     }
 
 
-    override fun onListFragmentInteraction(unite: Unite?) {
+    /*override fun onListFragmentInteraction(unite: Unite?) {
         //nav_left_view.setNavigationItemSelectedListener(this)
         Runnable {
             val transaction = fragmentManager.beginTransaction()
             transaction.replace(R.id.contentFrame, UniteDetailsFragment(unite!!.href))
             transaction.commit()
         }.run()
-    }
-
+    } */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
         if (result != null) {

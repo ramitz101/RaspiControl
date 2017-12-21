@@ -2,7 +2,11 @@ package ca.qc.cstj.konquest.models
 
 import com.github.kittinunf.fuel.android.core.Json
 
-class Unite(jsonObject: Json) {
+class Unite(jsonObject: Json) : Item() {
+
+    override fun getUrl():String {
+        return href
+    }
     var name : String = jsonObject.obj().getString("name")
     //var life : String = jsonObject.obj().getString("life")
     //var speed : String = jsonObject.obj().getString("speed")

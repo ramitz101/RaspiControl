@@ -11,6 +11,7 @@ import ca.qc.cstj.konquest.R
 import ca.qc.cstj.konquest.models.Unite
 import com.github.kittinunf.fuel.android.extension.responseJson
 import com.github.kittinunf.fuel.httpGet
+import kotlinx.android.synthetic.main.fragment_unite_details.*
 
 /**
  * A simple [Fragment] subclass.
@@ -20,7 +21,7 @@ import com.github.kittinunf.fuel.httpGet
  * Use the [UniteDetailsFragment.newInstance] factory method to
  * create an instance of this fragment_exploration_details.
  */
-class UniteDetailsFragment(private val href:String) : Fragment() {
+class UniteDetailsFragment(private val href:String,private val auth:String) : Fragment() {
 
 
 
@@ -29,17 +30,13 @@ class UniteDetailsFragment(private val href:String) : Fragment() {
 
         // Inflate the layout for this fragment_exploration_details
         val url = href
-        url.httpGet().responseJson { request, response, result ->
-            when(response.httpStatusCode){
+        url.httpGet()
+                .header("Authorization" to auth)
+                .responseJson { request, response, result ->
+            when(response.statusCode){
                 200-> {
                     val unite = Unite(result.get())
-                   /* lblName.text = unite.name
-                    lblLife.text = unite.life
-                    lblSpeed.text = unite
-                    imageURL.text =  unite
-                    lblAffinity.text = unite
-                    lblSet.text = unite
-                    lblNumber.text = unite*/
+                    lblName.text = unite.name
 
                 }
                 404-> {

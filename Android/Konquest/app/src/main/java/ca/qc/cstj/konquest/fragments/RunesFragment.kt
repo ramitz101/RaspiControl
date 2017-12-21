@@ -40,7 +40,6 @@ class RunesFragment : Fragment() {
                         200 -> {
                             val runes = Runes(result.get())
 
-                          
                             TextViewRuneAir.text = runes.air
                             TextViewRuneDarkness.text = runes.darkness
                             TextViewRuneEarth.text = runes.earth

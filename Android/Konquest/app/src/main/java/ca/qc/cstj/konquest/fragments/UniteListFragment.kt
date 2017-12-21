@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 
 import ca.qc.cstj.konquest.R
+import ca.qc.cstj.konquest.adapters.OnListFragmentInformationUnique
 import ca.qc.cstj.konquest.adapters.UniteRecyclerViewAdapter
 import ca.qc.cstj.konquest.helpers.UNITES_URL
 import ca.qc.cstj.konquest.models.Unite
@@ -22,7 +23,8 @@ import com.github.kittinunf.fuel.httpGet
 class UniteListFragment: Fragment() {
     // Les paramètres personnalisé.
     private var mColumnCount = 1
-    private var mListener: OnListFragmentInteractionListener? = null
+   // private var mListener: OnListFragmentInteractionListener? = null
+   private var mListener: OnListFragmentInformationUnique? = null
     private var unites = mutableListOf<Unite>()
     private var authorization = ""
 
@@ -92,7 +94,7 @@ class UniteListFragment: Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (context is OnListFragmentInteractionListener) {
+        if (context is OnListFragmentInformationUnique) {
             mListener = context
         } else {
             throw RuntimeException(context.toString() + " must implement OnListFragmentInteractionListener")
@@ -104,10 +106,10 @@ class UniteListFragment: Fragment() {
         mListener = null
     }
 
-    interface OnListFragmentInteractionListener {
+   // interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        fun onListFragmentInteraction(unite: Unite?)
-    }
+    //    fun onListFragmentInteraction(unite: Unite?)
+   // }
 
    companion object {
        // Les paramètres :
