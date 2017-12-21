@@ -26,18 +26,20 @@ $(document).ready(function(){
 				chaineUnit += "</tr>";
 				chaineUnit += "<tr>";
 				for(let weapons in unit.runes.weapons){
-					chaineUnit += "<td><img src='./img/weapons/"+weapons+".png' alt='"+weapons+"' /></td>";
+					let arme = unit.runes.weapons[weapons];
+					chaineUnit += "<td><img src='./img/weapons/"+arme+".png' alt='"+arme+"' /></td>";
 				}	
 				chaineUnit += "</tr>";
 				chaineUnit += "<tr>";
 				let compteur;
 				for(let ability in unit.runes.abilities){
+					let abiliti = unit.runes.abilities[ability];
 					if(compteur === 2)
 					{
 						chaineUnit += "</tr>";
 						chaineUnit += "<tr>";
 					}
-					chaineUnit += "<td><img src='./img/runes/"+ability+".png' alt='"+ability+"' /></td>";
+					chaineUnit += "<td><img src='./img/runes/"+abiliti+".png' alt='"+abiliti+"' /></td>";
 					compteur++;					
 				}
 				chaineUnit += "</tr>";
