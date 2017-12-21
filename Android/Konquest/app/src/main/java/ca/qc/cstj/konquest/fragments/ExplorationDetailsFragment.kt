@@ -26,6 +26,10 @@ import kotlinx.android.synthetic.main.fragment_exploration_details.view.*
 import kotlinx.android.synthetic.main.fragment_unite_details.view.*
 import org.json.JSONObject
 
+/*
+/**
+ * A simple [Fragment] subclass.
+ */
 class ExplorationDetailsFragment : Fragment() {
 
     //les parametres
@@ -55,10 +59,15 @@ class ExplorationDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
 
+
         // l'explorateur en json et ses objet
         var explorateurJson = JSONObject(explorateur)
-        var explorateurUser = explorateurJson.getJSONObject("user")
-        var explorateurRunes = explorateurUser.getJSONObject("runes")
+        var token = explorateurJson.getString("token")
+        // On prepare le token pour envoie.
+        var authorization = "bearer " + token
+
+
+
 
         val URL = PORTALKEY_URL + portalKey
 
@@ -93,20 +102,56 @@ class ExplorationDetailsFragment : Fragment() {
 
                     }
 
-                    // 1. regarder si il y a une unite
-                    // 2. est ce que je peux la débloquer. si oui offrir l'option de la débloquer et terminer le voyage. si non, aucune option
-                    // 3.ajouter les runes ou les soustraire. et la unite si il la débloquée
-                    // 4. créer un exploration dans la liste d'exploration
-
                 }
-                404 -> {
-                    // le portail existe pas
-                } else ->{
+        //        404 -> {
+         //           // le portail existe pas
+         //       } else ->{
+         //       var ee = ""
+         //       }
+         //   }
+       // }
 
+        fin_voyage.setOnClickListener{
+
+            var emptyUnit = "{}"
+            // construction d'une exploration
+            var explorationConstruite = Exploration(exploration.getString("dateExploration"),
+                    exploration.getString("destination"),
+                    exploration.getJSONObject("runes").toString(),
+                    emptyUnit
+
+            )
+            var explorateurString = explorationConstruite.toString()
+
+
+
+
+            EXPLORATION_URL.httpPost()
+                    .header("Authorization" to authorization,"Content-Type" to "application/json" )
+                    .body(explorateurString).responseJson { request, response, result ->
+                when (response.statusCode) {
+                    201 -> {
+                        Toast.makeText(this.context, "Exploration envoyé", Toast.LENGTH_SHORT).show()
+                    }
+                    else -> {
+                        //Toast.makeText(this.context, response.statusCode, Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
+            //}else{
+            //Toast.makeText(this.context, "Aucune unite à débloquer", Toast.LENGTH_SHORT).show()
+            //}
+
         }
+        if (ilYAUneUnite){
+
+
+
+        }
+
+
     }
+
 
     fun BindUniteRunes(explorationRunes: JSONObject){
         unite_air.text = explorationRunes.getString("air")
@@ -142,4 +187,7 @@ class ExplorationDetailsFragment : Fragment() {
     }
 
 
-}
+
+}// Required empty public constructor
+
+*/

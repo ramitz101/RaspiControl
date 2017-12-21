@@ -13,8 +13,8 @@
 
         <LinearLayout
             android:id="@+id/LinearLayoutRuneAir"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="200dp"
+            android:layout_height="70dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -25,6 +25,211 @@
 
             <TextView
                 android:id="@+id/TextViewRuneAir"
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LinearLayoutRuneDarkness"
+            android:layout_width="200dp"
+            android:layout_height="70dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/ImageViewRuneDarkness"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/darkness" />
+
+            <TextView
+                android:id="@+id/TextViewRuneDarkness"
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/LinearLayoutRunEarth"
+            android:layout_width="200dp"
+            android:layout_height="70dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/ImageViewRuneEarth"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/earth" />
+
+            <TextView
+                android:id="@+id/TextViewRuneEarth"
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/LinearLayoutRuneEnergy"
+            android:layout_width="200dp"
+            android:layout_height="70dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/ImageViewRuneEnergy"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/energy" />
+
+            <TextView
+                android:id="@+id/TextViewRuneEnergy"
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/LinearLayoutRunFire"
+            android:layout_width="200dp"
+            android:layout_height="70dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/ImageViewRuneFire"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/fire" />
+
+            <TextView
+                android:id="@+id/TextViewRuneFire"
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/LinearLayoutRuneLife"
+            android:layout_width="200dp"
+            android:layout_height="70dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/ImageViewRuneLife"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/life" />
+
+            <TextView
+                android:id="@+id/TextViewRuneLife"
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LinearLayoutRuneLight"
+            android:layout_width="200dp"
+            android:layout_height="70dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/ImageViewRuneLight"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/light" />
+
+            <TextView
+                android:id="@+id/TextViewRuneLight"
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LinearLayoutRuneLogic"
+            android:layout_width="200dp"
+            android:layout_height="70dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/ImageViewRuneLogic"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/logic" />
+
+            <TextView
+                android:id="@+id/TextViewRuneLogic"
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LinearLayoutRuneMusic"
+            android:layout_width="200dp"
+            android:layout_height="70dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/ImageViewRuneMusic"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/music" />
+
+            <TextView
+                android:id="@+id/TextViewRuneMusic"
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LinearLayoutRuneSpace"
+            android:layout_width="200dp"
+            android:layout_height="70dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/ImageViewRuneSpace"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/space" />
+
+            <TextView
+                android:id="@+id/TextViewRuneSpace"
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LinearLayoutRuneToxic"
+            android:layout_width="200dp"
+            android:layout_height="70dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/ImageViewRuneToxic"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/toxic" />
+
+            <TextView
+                android:id="@+id/TextViewRuneToxic"
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LinearLayoutRuneWater"
+            android:layout_width="200dp"
+            android:layout_height="70dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/ImageViewRuneWater"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/water" />
+
+            <TextView
+                android:id="@+id/TextViewRuneWater"
                 android:layout_width="50dp"
                 android:layout_height="50dp" />
 
