@@ -1,29 +1,23 @@
 package ca.qc.cstj.konquest.Activity
 
-import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
-import android.os.Handler
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import android.widget.LinearLayout
 import android.widget.Toast
 import ca.qc.cstj.konquest.R
 import ca.qc.cstj.konquest.fragments.AccueilFragment
 import ca.qc.cstj.konquest.fragments.RunesFragment
-//import ca.qc.cstj.konquest.fragments.ExplorationDetailsFragment
 import ca.qc.cstj.konquest.fragments.UniteDetailsFragment
 import ca.qc.cstj.konquest.fragments.UniteListFragment
 import ca.qc.cstj.konquest.fragments.*
 import ca.qc.cstj.konquest.helpers.*
 import ca.qc.cstj.konquest.models.Runes
-import ca.qc.cstj.konquest.models.Explorateur
 import ca.qc.cstj.konquest.models.Exploration
 import ca.qc.cstj.konquest.models.Unite
 import com.github.kittinunf.fuel.android.extension.responseJson
@@ -37,9 +31,8 @@ import org.json.JSONObject
 class MainActivity : AppCompatActivity(),
         UniteListFragment.OnListFragmentInteractionListener,
         AccueilFragment.OnFragmentInteractionListener,
-        ExplorationListFragment.OnListFragmentInteractionListener
-        AccueilFragment.OnFragmentInteractionListener,
-        RunesFragment.OnFragmentInteractionListener/*, ExplorationDetailsFragment.OnClickListener*/
+        ExplorationListFragment.OnListFragmentInteractionListener,
+        RunesFragment.OnFragmentInteractionListener
 {
     override fun onListFragmentInteraction(item: Exploration) {
         // Fragment Exploration.
@@ -48,10 +41,6 @@ class MainActivity : AppCompatActivity(),
     override fun onFragmentInteraction(uri: Uri) {
         // Fragment Accueil.
     }
-    /*override fun OnClickListener(item: Exploration) {
-        // Fragment Accueil.
-    }
-*/
 
     /*override fun onFragmentInteraction(uri: Uri) {
         // Pour le fragment_exploration_details Runes.
@@ -291,7 +280,6 @@ class MainActivity : AppCompatActivity(),
             //transaction.replace(R.id.contentFrame, ExplorationDetailsFragment.newInstance(explorateur, key))
             //transaction.commit()
         }.run()
-
 
     }
 }
