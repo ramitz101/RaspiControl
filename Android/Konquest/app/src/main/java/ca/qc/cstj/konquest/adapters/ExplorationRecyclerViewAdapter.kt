@@ -33,6 +33,8 @@ class ExplorationRecyclerViewAdapter(private val mValues: List<Exploration>,
         var lblDateExploration = mView.textViewExplorateurDateExploration
         var lblDepart = mView.textViewExplorateurDepart
         var lblDestination = mView.textViewExplorateurDestination
+        var lblUnit = mView.textViewExplorateurUnit
+        var lblRune = mView.textViewExplorateurRune
 
 
         fun bind(exploration: Exploration)
@@ -41,7 +43,25 @@ class ExplorationRecyclerViewAdapter(private val mValues: List<Exploration>,
 
             lblDateExploration.text = exploration.dateExploration
             lblDepart.text = exploration.depart
-            lblDateExploration.text = exploration.destination
+            lblDestination.text = exploration.destination
+
+            if(exploration.runes == "{}")
+            {
+                lblRune.text = "Aucune(s) rune(s) gagnée."
+            }
+            else
+            {
+                lblRune.text = "A gagné de(s) rune(s)."
+            }
+
+            if(exploration.unit == "{}")
+            {
+                lblUnit.text = "Aucune unit gagnée."
+            }
+            else
+            {
+                lblUnit.text = "Une unit gagnée."
+            }
         }
     }
 }
